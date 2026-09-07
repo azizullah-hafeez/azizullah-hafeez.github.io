@@ -28,11 +28,42 @@
     @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.pillar{transition:none}}
   </style>
 <link rel="stylesheet" href="fonts.css?v=20260907">
+
+<style id="sticky-navigation">
+  .top{padding-top:77px}
+  nav.site-nav-sticky{
+    position:fixed;top:0;left:50%;transform:translateX(-50%);
+    width:min(100%,var(--max));z-index:1000;
+    background:rgba(8,23,36,.82);
+    box-shadow:0 0 0 100vmax rgba(8,23,36,.82);
+    clip-path:inset(0 -100vmax);
+    -webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);
+    transition:padding .25s ease,background-color .25s ease,box-shadow .25s ease;
+  }
+  nav.site-nav-sticky .seal,
+  nav.site-nav-sticky .mark,
+  nav.site-nav-sticky .links a{transition:all .25s ease}
+  nav.site-nav-sticky.nav-compact{
+    padding-top:.58rem;padding-bottom:.58rem;
+    background:rgba(8,23,36,.96);
+    box-shadow:0 0 0 100vmax rgba(8,23,36,.96),0 8px 24px rgba(0,0,0,.2);
+  }
+  nav.site-nav-sticky.nav-compact .seal{width:1.9rem;height:1.9rem}
+  nav.site-nav-sticky.nav-compact .links a{font-size:.86rem}
+  @media(max-width:800px){
+    .top{padding-top:69px}
+    nav.site-nav-sticky.nav-compact{padding-top:.5rem;padding-bottom:.5rem}
+    nav.site-nav-sticky.nav-compact .links{top:3.65rem}
+  }
+  @media(prefers-reduced-motion:reduce){
+    nav.site-nav-sticky,nav.site-nav-sticky *{transition:none!important}
+  }
+</style>
 </head>
 <body>
   <a class="skip" href="#main">Skip to content</a>
   <header class="top">
-    <nav aria-label="Main navigation">
+    <nav class="site-nav-sticky" id="siteNav" aria-label="Main navigation">
       <a class="mark" href="#main"><span class="seal">AH</span><span>AZIZULLAH HAFEEZ</span></a>
       <button class="menu" aria-expanded="false" aria-controls="navlinks" data-i18n="menu">Menu</button>
       <div class="links" id="navlinks"><a href="#work" data-i18n="navWork">Work</a><a href="#research" data-i18n="navResearch">Research</a><a href="blog.html" data-i18n="navBlog">Blog</a><a href="courses.html" data-i18n="navCourses">Courses</a><a href="activities.html" data-i18n="navActivities">Activities</a><a href="media.html" data-i18n="navMedia">Media</a><a href="#publications" data-i18n="navPublications">Publications</a><a href="#speaking" data-i18n="navSpeaking">Speaking</a><a class="nav-cta" href="#contact" data-i18n="navConnect">Connect</a><div class="langs" role="group" aria-label="Choose language"><button class="lang active" data-lang="en" lang="en">EN</button><button class="lang" data-lang="fa" lang="fa">فارسی</button><button class="lang" data-lang="ps" lang="ps">پښتو</button><button class="lang" data-lang="ar" lang="ar">العربية</button></div></div>
@@ -75,6 +106,11 @@
   <footer id="contact"><div class="foot"><div class="foot-top"><h2 data-i18n-html="footerTitle">Let’s build knowledge that <em>travels.</em></h2><div class="contact"><a href="mailto:hafeez.ahia@gmail.com">hafeez.ahia@gmail.com ↗</a><a href="https://t.me/AzizHafeez" target="_blank" rel="noopener" data-i18n="telegram">Telegram · @AzizHafeez ↗</a><a href="https://medium.com/@ahia74" target="_blank" rel="noopener" data-i18n="medium">Essays on Medium ↗</a></div></div><div class="fine"><span>© <span id="year"></span> Azizullah Hafeez</span><span data-i18n="footPlace">Herat · Afghanistan · The world</span></div></div></footer>
   <div class="lang-status" aria-live="polite" id="langStatus"></div>
   <script>
+
+    const siteNav=document.getElementById('siteNav');
+    const updateStickyNav=()=>siteNav.classList.toggle('nav-compact',window.scrollY>40);
+    updateStickyNav();
+    window.addEventListener('scroll',updateStickyNav,{passive:true});
     const menu=document.querySelector('.menu'),links=document.querySelector('.links');menu.addEventListener('click',()=>{const open=menu.getAttribute('aria-expanded')==='true';menu.setAttribute('aria-expanded',String(!open));links.classList.toggle('open',!open)});links.addEventListener('click',e=>{if(e.target.closest('a')){menu.setAttribute('aria-expanded','false');links.classList.remove('open')}});document.getElementById('year').textContent=new Date().getFullYear();
     const originals={};document.querySelectorAll('[data-i18n]').forEach(e=>originals[e.dataset.i18n]=e.textContent);document.querySelectorAll('[data-i18n-html]').forEach(e=>originals[e.dataset.i18nHtml]=e.innerHTML);
     const translations={
