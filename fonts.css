@@ -1,0 +1,21 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@400;500;600;700&family=Vazirmatn:wght@400;500;600;700;800&display=swap');
+
+/* Persian/Dari: clean contemporary typography */
+html[lang="fa"] body,
+html[lang="fa"] h1,html[lang="fa"] h2,html[lang="fa"] h3,html[lang="fa"] h4,
+html[lang="fa"] button,html[lang="fa"] input,html[lang="fa"] textarea,html[lang="fa"] select{
+  font-family:"Vazirmatn",Tahoma,"Segoe UI",Arial,sans-serif!important;
+}
+html[lang="fa"] body{line-height:1.85}
+
+/* Pashto and Arabic: full script support with an elegant reading face */
+html[lang="ps"] body,
+html[lang="ps"] h1,html[lang="ps"] h2,html[lang="ps"] h3,html[lang="ps"] h4,
+html[lang="ps"] button,html[lang="ps"] input,html[lang="ps"] textarea,html[lang="ps"] select,
+html[lang="ar"] body,
+html[lang="ar"] h1,html[lang="ar"] h2,html[lang="ar"] h3,html[lang="ar"] h4,
+html[lang="ar"] button,html[lang="ar"] input,html[lang="ar"] textarea,html[lang="ar"] select{
+  font-family:"Noto Naskh Arabic","Segoe UI",Tahoma,Arial,sans-serif!important;
+}
+html[lang="ps"] body,html[lang="ar"] body{line-height:1.95}
+html[dir="rtl"] h1,html[dir="rtl"] h2,html[dir="rtl"] h3{letter-spacing:0!important}
