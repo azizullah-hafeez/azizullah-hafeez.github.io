@@ -9,10 +9,40 @@
 @media(max-width:760px){.posts{grid-template-columns:1fr}nav{padding:1rem 1.25rem}.menu{display:block}.links{display:none;position:absolute;top:4.7rem;left:1rem;right:1rem;background:var(--ink2);padding:1rem;flex-direction:column;align-items:stretch}.links.open{display:flex}.langs{margin:0;padding-top:.5rem;border-top:1px solid rgba(255,255,255,.12)}.hero,.main{padding-left:1.25rem;padding-right:1.25rem}.empty{grid-template-columns:1fr;gap:1rem}.empty-icon{font-size:4rem}.cta,.bar,.foot{align-items:flex-start;flex-direction:column}}
 </style>
 <link rel="stylesheet" href="fonts.css?v=20260907">
+
+<style id="sticky-navigation">
+  header{padding-top:77px}
+  .site-nav-sticky{
+    position:fixed!important;top:0;left:50%;transform:translateX(-50%);
+    width:min(100%,var(--max));z-index:1000;
+    background:rgba(8,23,36,.82);
+    box-shadow:0 0 0 100vmax rgba(8,23,36,.82);
+    clip-path:inset(0 -100vmax);
+    -webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);
+    transition:padding .25s ease,background-color .25s ease,box-shadow .25s ease;
+  }
+  .site-nav-sticky .seal,.site-nav-sticky .brand,
+  .site-nav-sticky .mark,.site-nav-sticky .links a{transition:all .25s ease}
+  .site-nav-sticky.nav-compact{
+    padding-top:.58rem!important;padding-bottom:.58rem!important;
+    background:rgba(8,23,36,.96);
+    box-shadow:0 0 0 100vmax rgba(8,23,36,.96),0 8px 24px rgba(0,0,0,.2);
+  }
+  .site-nav-sticky.nav-compact .seal{width:1.9rem;height:1.9rem}
+  .site-nav-sticky.nav-compact .links a{font-size:.86rem}
+  @media(max-width:760px){
+    header{padding-top:69px}
+    .site-nav-sticky.nav-compact{padding-top:.5rem!important;padding-bottom:.5rem!important}
+    nav.site-nav-sticky.nav-compact .links{top:3.65rem}
+  }
+  @media(prefers-reduced-motion:reduce){
+    .site-nav-sticky,.site-nav-sticky *{transition:none!important}
+  }
+</style>
 </head>
 <body>
 <header class="top">
-<nav><a class="mark" href="index.html"><span class="seal">AH</span><span>AZIZULLAH HAFEEZ</span></a><button class="menu" aria-expanded="false" aria-controls="navlinks" data-i18n="menu">Menu</button><div class="links" id="navlinks"><a href="index.html" data-i18n="home">Home</a><a class="active" href="blog.html" data-i18n="blog">Blog</a><a href="activities.html" data-i18n="activities">Activities</a><a href="media.html" data-i18n="media">Media</a><a href="index.html#publications" data-i18n="publications">Publications</a><a href="index.html#contact" data-i18n="contact">Connect</a><div class="langs" role="group" aria-label="Choose language"><button class="lang active" data-lang="en">EN</button><button class="lang" data-lang="fa">فارسی</button><button class="lang" data-lang="ps">پښتو</button><button class="lang" data-lang="ar">العربية</button></div></div></nav>
+<nav class="site-nav-sticky" id="siteNav"><a class="mark" href="index.html"><span class="seal">AH</span><span>AZIZULLAH HAFEEZ</span></a><button class="menu" aria-expanded="false" aria-controls="navlinks" data-i18n="menu">Menu</button><div class="links" id="navlinks"><a href="index.html" data-i18n="home">Home</a><a class="active" href="blog.html" data-i18n="blog">Blog</a><a href="activities.html" data-i18n="activities">Activities</a><a href="media.html" data-i18n="media">Media</a><a href="index.html#publications" data-i18n="publications">Publications</a><a href="index.html#contact" data-i18n="contact">Connect</a><div class="langs" role="group" aria-label="Choose language"><button class="lang active" data-lang="en">EN</button><button class="lang" data-lang="fa">فارسی</button><button class="lang" data-lang="ps">پښتو</button><button class="lang" data-lang="ar">العربية</button></div></div></nav>
 <div class="hero"><p class="eyebrow" data-i18n="eyebrow">Essays · Analysis · Public Scholarship</p><h1 data-i18n-html="title">Notes for a more <em>thoughtful world.</em></h1><p class="intro" data-i18n="intro">Writing on religion, society, research, artificial intelligence, history, and the difficult questions that deserve more than a quick answer.</p></div>
 </header>
 <main class="main"><div class="bar"><h2 data-i18n="latest">Latest writing</h2><span class="count" data-i18n="count">11 articles</span></div>
@@ -28,5 +58,11 @@ fa:{media:'رسانه',menu:'فهرست',home:'خانه',blog:'بلاگ',activit
 ps:{media:'رسنۍ',menu:'غورنۍ',home:'کور',blog:'بلاګ',activities:'فعالیتونه',publications:'آثار',contact:'اړیکه',eyebrow:'مقالې · شننه · عامه پوهه',title:'د یوې لا <em>هوښیارې نړۍ</em> لپاره یادښتونه.',intro:'د دین، ټولنې، څېړنې، مصنوعي ځیرکتیا، تاریخ او هغو سختو پوښتنو په اړه لیکنې چې له چټک ځواب څخه ډېر څه غواړي.',latest:'تازه لیکنې',count:'۱۱ مقالې',emptyTitle:'لومړۍ مقاله د چمتو کېدو په حال کې ده.',emptyCopy:'دا پاڼه چمتو ده. نوې مقالې به دلته د خپرېدو له نېټې، ژبې، برخې، لنډیز او بشپړ متن سره راښکاره شي.',topic1:'دین او ټولنه',topic2:'مصنوعي ځیرکتیا او کلتور',topic3:'څېړنه',topic4:'تاریخ',topic5:'انساني وده',cta:'د څېړلو وړ پوښتنه لرئ؟',write:'ماته ولیکئ ←',place:'هرات · افغانستان · نړۍ'},
 ar:{media:'الإعلام',menu:'القائمة',home:'الرئيسية',blog:'المدونة',activities:'الأنشطة',publications:'المؤلفات',contact:'تواصل',eyebrow:'مقالات · تحليل · معرفة عامة',title:'ملاحظات من أجل عالم <em>أكثر وعيًا.</em>',intro:'كتابات في الدين والمجتمع والبحث والذكاء الاصطناعي والتاريخ والأسئلة الصعبة التي تستحق أكثر من إجابة سريعة.',latest:'أحدث الكتابات',count:'١١ مقالة',emptyTitle:'المقالة الأولى قيد الإعداد.',emptyCopy:'هذه الصفحة جاهزة. ستظهر المقالات الجديدة هنا مع تاريخ النشر واللغة والتصنيف والملخص ورابط النص الكامل.',topic1:'الدين والمجتمع',topic2:'الذكاء الاصطناعي والثقافة',topic3:'البحث',topic4:'التاريخ',topic5:'التنمية الإنسانية',cta:'هل لديك سؤال يستحق البحث؟',write:'راسلني ←',place:'هرات · أفغانستان · العالم'}};
 function renderPosts(l){const q=BLOG_POSTS[0].title[l]?l:'en',labels={en:'Read article →',fa:'خواندن مقاله ←',ps:'مقاله ولولئ ←',ar:'اقرأ المقال ←'};document.getElementById('posts').innerHTML=BLOG_POSTS.map(p=>`<a class="card" href="article-${p.id}.html"><span class="meta">${p.date} · ${p.category[q]}</span><h3>${p.title[q]}</h3><p>${p.excerpt[q]}</p><span class="byline">${{en:"By Azizullah Hafeez",fa:"نویسنده: عزیزالله حفیظ",ps:"لیکوال: عزیزالله حفیظ",ar:"بقلم: عزيز الله حفيظ"}[q]}</span><span class="read">${labels[q]}</span></a>`).join('')}function setLang(l){const w=t[l]||originals;document.querySelectorAll('[data-i18n]').forEach(e=>e.textContent=w[e.dataset.i18n]??originals[e.dataset.i18n]);document.querySelectorAll('[data-i18n-html]').forEach(e=>e.innerHTML=w[e.dataset.i18nHtml]??originals[e.dataset.i18nHtml]);document.documentElement.lang=l;document.documentElement.dir=l==='en'?'ltr':'rtl';document.querySelectorAll('.lang').forEach(b=>b.classList.toggle('active',b.dataset.lang===l));localStorage.setItem('hafeez-language',l);renderPosts(l)}document.querySelectorAll('.lang').forEach(b=>b.onclick=()=>setLang(b.dataset.lang));const saved=localStorage.getItem('hafeez-language')||'en';setLang(saved);
+</script>
+<script id="sticky-nav-script">
+const siteNav=document.getElementById('siteNav');
+const updateStickyNav=()=>siteNav.classList.toggle('nav-compact',window.scrollY>40);
+updateStickyNav();
+window.addEventListener('scroll',updateStickyNav,{passive:true});
 </script>
 </body></html>
