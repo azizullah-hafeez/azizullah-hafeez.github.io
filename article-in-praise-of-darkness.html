@@ -31,6 +31,7 @@ html[dir="ltr"] body{font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-s
     box-shadow:0 0 0 100vmax rgba(8,23,36,.97),0 8px 24px rgba(0,0,0,.2);
   }
   main:has(> .hero){max-width:920px}
+  main:has(> .hero) .panel h1{font-size:clamp(2rem,4vw,3rem);line-height:1.18;letter-spacing:-.025em;margin-top:.45rem;margin-bottom:1.4rem}
   main > .hero{
     float:inline-start;width:min(44%,360px)!important;height:auto!important;
     max-height:430px;aspect-ratio:auto!important;object-fit:cover;
@@ -46,6 +47,7 @@ html[dir="ltr"] body{font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-s
     .site-article-nav .langs button{padding:.3rem .42rem;font-size:.72rem}
     .site-article-nav.nav-compact{padding:.4rem 1rem!important}
     main > .hero{float:none;width:100%!important;height:min(68vw,280px)!important;max-height:280px;object-fit:cover;margin:0 0 1.35rem!important}
+    main:has(> .hero) .panel h1{font-size:1.95rem;line-height:1.22;margin-bottom:1.15rem}
   }
   @media(prefers-reduced-motion:reduce){.site-article-nav,.site-article-nav *{transition:none!important}}
 </style>
