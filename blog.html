@@ -49,7 +49,7 @@
 <section class="posts" id="posts" aria-label="Articles"></section>
 <div class="cta"><strong data-i18n="cta">Have a question worth examining?</strong><a href="mailto:hafeez.ahia@gmail.com?subject=Essay%20or%20Research%20Inquiry" data-i18n="write">Write to me →</a></div></main>
 <footer><div class="foot"><span>© <span id="year"></span> Azizullah Hafeez</span><span data-i18n="place">Herat · Afghanistan · The world</span></div></footer><div class="status" id="status" aria-live="polite"></div>
-<script src="posts.js?v=20260907-11"></script>
+<script src="posts.js?v=20260907-12"></script>
 <script>
 const menu=document.querySelector('.menu'),links=document.querySelector('.links');menu.addEventListener('click',()=>{const o=menu.getAttribute('aria-expanded')==='true';menu.setAttribute('aria-expanded',String(!o));links.classList.toggle('open',!o)});document.getElementById('year').textContent=new Date().getFullYear();
 const originals={};document.querySelectorAll('[data-i18n]').forEach(e=>originals[e.dataset.i18n]=e.textContent);document.querySelectorAll('[data-i18n-html]').forEach(e=>originals[e.dataset.i18nHtml]=e.innerHTML);
