@@ -39,7 +39,7 @@
     .site-nav-sticky,.site-nav-sticky *{transition:none!important}
   }
 </style>
-</head>
+<style id="social-features">.site-follow{display:flex;flex-wrap:wrap;align-items:center;gap:.55rem;margin-top:1.15rem}.site-follow__label{font-size:.78rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;opacity:.8;margin-inline-end:.15rem}.site-follow a{display:inline-flex;align-items:center;justify-content:center;min-height:34px;padding:.38rem .65rem;border:1px solid currentColor;color:inherit;text-decoration:none;font:700 .78rem/1 Inter,system-ui,sans-serif}.site-follow a:hover{background:var(--gold,#c99a3d);border-color:var(--gold,#c99a3d);color:#081724}@media(max-width:620px){.site-follow a{min-height:32px;padding:.35rem .5rem;font-size:.73rem}}</style></head>
 <body>
 <header class="top">
 <nav class="site-nav-sticky" id="siteNav"><a class="mark" href="index.html"><span class="seal">AH</span><span>AZIZULLAH HAFEEZ</span></a><button class="menu" aria-expanded="false" aria-controls="navlinks" data-i18n="menu">Menu</button><div class="links" id="navlinks"><a href="index.html" data-i18n="home">Home</a><a class="active" href="blog.html" data-i18n="blog">Blog</a><a href="activities.html" data-i18n="activities">Activities</a><a href="media.html" data-i18n="media">Media</a><a href="index.html#publications" data-i18n="publications">Publications</a><a href="index.html#contact" data-i18n="contact">Connect</a><div class="langs" role="group" aria-label="Choose language"><button class="lang active" data-lang="en">EN</button><button class="lang" data-lang="fa">فارسی</button><button class="lang" data-lang="ps">پښتو</button><button class="lang" data-lang="ar">العربية</button></div></div></nav>
@@ -48,7 +48,7 @@
 <main class="main"><div class="bar"><h2 data-i18n="latest">Latest writing</h2><span class="count" data-i18n="count">11 articles</span></div>
 <section class="posts" id="posts" aria-label="Articles"></section>
 <div class="cta"><strong data-i18n="cta">Have a question worth examining?</strong><a href="mailto:hafeez.ahia@gmail.com?subject=Essay%20or%20Research%20Inquiry" data-i18n="write">Write to me →</a></div></main>
-<footer><div class="foot"><span>© <span id="year"></span> Azizullah Hafeez</span><span data-i18n="place">Herat · Afghanistan · The world</span></div></footer><div class="status" id="status" aria-live="polite"></div>
+<footer><div class="foot"><span>© <span id="year"></span> Azizullah Hafeez</span><span data-i18n="place">Herat · Afghanistan · The world</span></div><div class="site-follow" aria-label="Follow Azizullah Hafeez"><span class="site-follow__label">Follow</span><a href="https://www.instagram.com/azizullah.hafeez/" target="_blank" rel="me noopener">Instagram</a><a href="https://www.facebook.com/ahia74" target="_blank" rel="me noopener">Facebook</a><a href="https://www.youtube.com/@AzizullahHafeez" target="_blank" rel="me noopener">YouTube</a></div></footer><div class="status" id="status" aria-live="polite"></div>
 <script src="posts.js?v=20260907-12"></script>
 <script>
 const menu=document.querySelector('.menu'),links=document.querySelector('.links');menu.addEventListener('click',()=>{const o=menu.getAttribute('aria-expanded')==='true';menu.setAttribute('aria-expanded',String(!o));links.classList.toggle('open',!o)});document.getElementById('year').textContent=new Date().getFullYear();
