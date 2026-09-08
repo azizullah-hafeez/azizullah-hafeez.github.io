@@ -1,0 +1,33 @@
+/* Shared navigation and article layout, used by every page. */
+:root{--site-nav-height:82px}
+html{scroll-padding-top:calc(var(--site-nav-height) + 20px)}
+body>header,body>.top{padding-top:var(--site-nav-height)!important}
+#siteNav.unified-nav{box-sizing:border-box;position:fixed;inset:0 0 auto;z-index:1000;display:flex;align-items:center;gap:18px;max-width:none;width:100%;margin:0;padding:20px max(20px,calc((100vw - 1250px)/2));background:rgba(8,23,36,.97);color:#fff;border-bottom:1px solid #ffffff20;transition:padding .2s;transform:none;flex-wrap:nowrap}
+#siteNav.unified-nav.nav-compact{padding-block:10px;box-shadow:0 4px 18px #0002}
+#siteNav .unified-brand{color:#fff;text-decoration:none;font:800 14px/1.3 system-ui,sans-serif;white-space:nowrap}
+#siteNav .unified-links{display:flex;align-items:center;gap:14px;flex:1;justify-content:center}
+#siteNav .unified-links a{font-size:13px;color:#e1e8ec;text-decoration:none;white-space:nowrap;line-height:1.6}
+#siteNav .unified-links a:hover,#siteNav .unified-links a[aria-current]{color:#f0c86b}
+#siteNav .unified-langs{display:flex;gap:3px;flex-shrink:0}
+#siteNav button{cursor:pointer;font:inherit}
+#siteNav .unified-langs button{background:transparent;color:#d2dce1;border:0;border-bottom:2px solid transparent;padding:7px 5px;font-size:12px}
+#siteNav .unified-langs button.active{color:#f0c86b;border-color:#c99a3d}
+#siteNav .unified-menu{display:none;background:transparent;border:1px solid #ffffff60;color:#fff;padding:7px 10px}
+#siteNav :focus-visible{outline:2px solid #f0c86b;outline-offset:4px}
+@media(max-width:1150px){
+#siteNav.unified-nav{padding:14px 20px;gap:12px;flex-wrap:wrap}
+#siteNav .unified-brand{margin-inline-end:auto}
+#siteNav .unified-menu{display:block;font-size:13px}
+#siteNav .unified-links{display:none;order:4;flex-basis:100%;max-height:65vh;overflow:auto;padding:14px 0;flex-wrap:wrap;justify-content:flex-start;gap:8px 22px}
+#siteNav .unified-links.open{display:flex}
+#siteNav .unified-links a{padding:8px;font-size:15px}
+}
+@media(max-width:480px){#siteNav.unified-nav{padding:12px;gap:8px}#siteNav .unified-brand{font-size:11px}#siteNav .unified-menu{padding:5px 8px}#siteNav .unified-menu span{display:none}#siteNav .unified-langs button{padding:6px 4px;font-size:11px}}
+body[data-article] main:has(> .hero){max-width:920px}
+body[data-article] h1{font-size:clamp(1.7rem,3.5vw,2.65rem)!important;line-height:1.3!important;margin-block:.6rem 1.4rem!important}
+body[data-article] main>.hero{float:inline-start;width:min(44%,360px)!important;height:auto!important;max-height:430px;aspect-ratio:auto!important;object-fit:contain;margin:0 0 1.5rem!important;margin-inline-end:2rem!important;border-radius:3px;border-bottom:5px solid #c99a3d}
+body[data-article] main::after{content:"";display:block;clear:both}
+@media(max-width:620px){body[data-article] main>.hero{float:none;width:100%!important;height:auto!important;max-height:280px;object-fit:contain;margin:0 0 1.35rem!important}}
+@media(prefers-reduced-motion:reduce){#siteNav.unified-nav{transition:none}}
+.share-tools{display:flex;flex-wrap:wrap;gap:.6rem;align-items:center}.share-tools__label{font-weight:700;flex-basis:100%}.share-tools a,.share-tools button{border:1px solid #a89978;padding:.4rem .75rem;background:transparent;color:#081724;font:inherit;font-size:.85rem;text-decoration:none;cursor:pointer}
+.global-social-actions{clear:both;margin-top:2.2rem;padding-top:1.5rem;border-top:1px solid #d3c7b3}
