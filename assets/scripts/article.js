@@ -10,3 +10,6 @@ function setLang(l){
 }
 document.querySelectorAll('[data-lang]').forEach(x=>x.onclick=()=>setLang(x.dataset.lang));
 setLang(new URLSearchParams(location.search).get('lang')||localStorage.getItem('hafeez-language')||'en');
+
+/* Shared article media: infer the crop from the real image dimensions. */
+document.querySelectorAll('.article-media img').forEach(img=>{const apply=()=>{const ratio=(img.naturalWidth||Number(img.getAttribute('width')))/(img.naturalHeight||Number(img.getAttribute('height')));img.closest('.article-media').dataset.shape=ratio>1.15?'landscape':ratio<.87?'portrait':'square'};img.complete?apply():img.addEventListener('load',apply,{once:true})});
