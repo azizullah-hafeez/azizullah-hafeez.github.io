@@ -27,5 +27,6 @@ for p in root.glob('*.html'):
  count+=1
 article_script=(root/'assets/scripts/article.js').read_text()
 assert 'placeArticleMedia' in article_script
+assert "panel.querySelector('p')" in article_script
 assert "insertAdjacentElement('afterend',media)" in article_script
 print('Validated',count,'pages.')
