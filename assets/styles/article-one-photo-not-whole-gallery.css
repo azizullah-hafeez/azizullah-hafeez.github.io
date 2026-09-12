@@ -1,0 +1,8 @@
+.article-visual{margin:0 auto 2.7rem;width:min(100%,720px)}
+.article-visual .hero{width:100%;max-width:none;aspect-ratio:1280/853;object-fit:cover;object-position:center;margin:0;border-radius:4px 4px 0 0;border-bottom:5px solid var(--gold)}
+.article-visual figcaption{padding:.7rem 1rem;background:#e8e0d1;color:#526571;font-size:.82rem;text-align:center}
+.panel h2{margin:2.2rem 0 .75rem;font:600 1.45rem/1.35 Georgia,"Times New Roman",serif}
+[dir=rtl] .panel h2{font-family:Tahoma,"Segoe UI",Arial,sans-serif}
+blockquote{margin:1.7rem 0;padding:1.2rem 1.4rem;border-inline-start:5px solid var(--gold);background:#fff;font-weight:700}
+.closing-line{margin-top:2rem;padding:1.25rem 1.4rem;border-inline-start:5px solid var(--gold);background:#fff;font-weight:800}
+@media(max-width:620px){.article-visual{width:100%;margin-bottom:1.8rem}.article-visual .hero{border-radius:0}.article-visual figcaption{font-size:.78rem}}
