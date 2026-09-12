@@ -20,5 +20,12 @@ for p in root.glob('*.html'):
  if p.name.startswith('article-'):
   assert {a['data-panel'] for _,a in tags if 'data-panel' in a}=={'en','fa','ps','ar'},p
   assert text.count('data-share-tools')==1,p
+  if 'data-article-media' in text:
+   assert text.count('data-article-media')==1,p
+   assert 'assets/styles/article-base.css' in text,p
+   assert 'assets/scripts/article.js' in text,p
  count+=1
+article_script=(root/'assets/scripts/article.js').read_text()
+assert 'placeArticleMedia' in article_script
+assert "insertAdjacentElement('afterend',media)" in article_script
 print('Validated',count,'pages.')

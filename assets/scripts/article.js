@@ -1,10 +1,12 @@
 /* One language controller for all standalone articles. */
+function placeArticleMedia(l){const media=document.querySelector('[data-article-media]'),heading=document.querySelector('[data-panel="'+l+'"] h1');if(media&&heading){heading.insertAdjacentElement('afterend',media);media.dataset.ready='true'}}
 function setLang(l){
  if(!['en','fa','ps','ar'].includes(l))l='en';
  document.querySelectorAll('[data-panel]').forEach(x=>x.hidden=x.dataset.panel!==l);
  document.querySelectorAll('[data-lang]').forEach(x=>x.classList.toggle('active',x.dataset.lang===l));
  document.documentElement.lang=l;document.documentElement.dir=l==='en'?'ltr':'rtl';
  localStorage.setItem('hafeez-language',l);
+ placeArticleMedia(l);
  const heading=document.querySelector('[data-panel="'+l+'"] h1');
  if(heading)document.title=heading.textContent.trim()+' — Azizullah Hafeez';
 }
