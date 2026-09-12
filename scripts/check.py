@@ -11,6 +11,8 @@ for p in root.glob('*.html'):
  text=p.read_text();tags=Tags(text).tags
  assert sum(a.get('id')=='siteNav' for _,a in tags)==1,p
  assert 'assets/scripts/site.js?v=' in text and 'assets/styles/site.css?v=' in text,p
+ assert text.count('data-cf-beacon=')==1,p
+ assert 'a1492f2f8a81419e9808279096ab7b60' in text,p
  assert '{{ include:' not in text,p
  for tag,a in tags:
   path=a.get('src') if tag=='script' else a.get('href') if tag=='link' and a.get('rel')=='stylesheet' else None

@@ -10,6 +10,7 @@ The live site remains on GitHub Pages with its existing public URLs.
 - `fonts.css`: Persian, Pashto, Arabic typography.
 - `templates/includes/follow.html`: social account links everywhere.
 - `templates/includes/article-social.html`: article sharing/follow markup.
+- `templates/includes/cloudflare-analytics.html`: Cloudflare Web Analytics on every public page.
 - `assets/scripts/article.js`: one language controller for all standalone articles.
 - `templates/pages/`: page content and page-specific structure. Edit these instead of the generated root HTML files.
 - `posts.js`: the blog catalogue used by the blog list and legacy article viewer. A new standalone article must also have a catalogue entry here to appear in the blog.
