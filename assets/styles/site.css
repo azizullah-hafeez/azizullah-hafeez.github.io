@@ -33,6 +33,36 @@ body[data-article] main::after{content:"";display:block;clear:both}
 .global-social-actions{clear:both;margin-top:2.2rem;padding-top:1.5rem;border-top:1px solid #d3c7b3}
 
 /* A quiet, shared visual language for the entire site. */
+/* Decorative lighting remains behind content and never receives input. */
+.hero:has(>.site-ambient){position:relative;isolation:isolate}
+.site-ambient{position:absolute;inset:0;z-index:-1;overflow:hidden;pointer-events:none;border-radius:inherit;background:radial-gradient(ellipse at 75% 25%,#c99a3d18,transparent 55%),radial-gradient(ellipse at 20% 70%,#438ca522,transparent 55%)}
+.site-ambient::before,.site-ambient::after{content:"";position:absolute;width:clamp(220px,38vw,520px);aspect-ratio:1;border:1px solid #f0c86b18;border-radius:50%;inset-inline-end:-8%;top:5%;box-shadow:0 0 0 45px #f0c86b05,0 0 0 90px #f0c86b04}
+.site-ambient::after{width:clamp(140px,24vw,340px);top:45%;inset-inline-end:50%;border-color:#76b2c51a;box-shadow:0 0 80px #438ca514}
+.hero h1 :is(span,em){text-shadow:0 5px 35px #c99a3d22}
+.top .hero-side{position:relative;box-shadow:0 24px 60px #0002,inset 0 1px 0 #f0c86b35}
+.top .portrait{border-radius:50%;outline:1px solid #f0c86b3b;outline-offset:10px}
+:is(.card,.pillar,.feature,.topic,.media-card){position:relative;isolation:isolate}
+:is(.card,.pillar,.feature,.topic,.media-card)::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;opacity:0;background:radial-gradient(260px circle at var(--light-x,50%) var(--light-y,0%),#e4b95e20,transparent 72%);transition:opacity .3s ease}
+:is(.card,.pillar,.feature,.topic,.media-card):focus-within::after{opacity:1}
+.btn.primary,.yt{position:relative;overflow:hidden;isolation:isolate;background-image:linear-gradient(115deg,#ffffff00,#fff2,#ffffff00)}
+.btn.primary::after,.yt::after{content:"";position:absolute;inset:-70% -120%;pointer-events:none;background:linear-gradient(105deg,transparent 44%,#fff5 50%,transparent 56%);transform:translateX(-45%)}
+.section-head .kicker{display:inline-flex;align-items:center;gap:.75rem}
+.section-head .kicker::before{content:"";width:26px;height:1px;background:currentColor;opacity:.65}
+body[data-article] .panel h2{border-inline-start:3px solid #c99a3d;padding-inline-start:.8rem}
+.quote{position:relative;border-block:1px solid #c99a3d20}
+.quote::before{content:"\201C";display:block;font:5rem/.7 Georgia,serif;color:#a77520;opacity:.45;margin-bottom:1.5rem}
+.contact a,.work a,.media-more{transition:color .25s ease,text-decoration-color .25s ease;text-decoration-thickness:1px;text-underline-offset:6px}
+@media(hover:hover) and (pointer:fine){
+ :is(.card,.pillar,.feature,.topic,.media-card):hover::after{opacity:1}
+ .top .hero-side:hover{border-color:#f0c86b65!important;box-shadow:0 25px 65px #0003,inset 0 1px 0 #f0c86b55}
+ .btn.primary:hover::after,.yt:hover::after{transform:translateX(45%);transition:transform .8s ease}
+}
+@keyframes ambient-arrive{from{opacity:0;transform:scale(.93)}to{opacity:1;transform:scale(1)}}
+@media(prefers-reduced-motion:no-preference){
+ .site-ambient{animation:ambient-arrive 1.8s ease-out both}
+ .top .hero-side{transition:border-color .35s ease,box-shadow .35s ease}
+}
+@media(prefers-reduced-motion:reduce){.btn.primary::after,.yt::after{display:none}}
 :root{--motion-ease:cubic-bezier(.22,1,.36,1)}
 html{scroll-behavior:smooth}
 ::selection{background:#f0c86b;color:#081724}

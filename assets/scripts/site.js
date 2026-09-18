@@ -34,6 +34,32 @@
 })();
 
 /* Progressive motion: content stays visible if animation support is absent. */
+/* Lightweight lighting, with no animation loop and no touch tracking. */
+(()=>{
+ document.querySelectorAll('header .hero,body>.hero').forEach(hero=>{
+  if(hero.tagName==='IMG')return;
+  const light=document.createElement('span');light.className='site-ambient';
+  light.setAttribute('aria-hidden','true');hero.append(light);
+ });
+ const pointer=matchMedia('(hover: hover) and (pointer: fine)');
+ const reduced=matchMedia('(prefers-reduced-motion: reduce)');
+ let frame=0,pending=null;
+ const selector='.card,.pillar,.feature,.topic,.media-card';
+ document.addEventListener('pointermove',event=>{
+  if(!pointer.matches||reduced.matches)return;
+  const card=event.target.closest?.(selector);if(!card)return;
+  pending={card,x:event.clientX,y:event.clientY};
+  if(frame)return;
+  frame=requestAnimationFrame(()=>{
+   frame=0;if(!pending||reduced.matches||!pointer.matches)return;
+   const {card,x,y}=pending;pending=null;
+   if(!card.isConnected)return;
+   const rect=card.getBoundingClientRect();
+   card.style.setProperty('--light-x',(x-rect.left)+'px');
+   card.style.setProperty('--light-y',(y-rect.top)+'px');
+  });
+ },{passive:true});
+})();
 (()=>{
  const reduced=window.matchMedia('(prefers-reduced-motion: reduce)');
  const running=new Set();
@@ -47,7 +73,7 @@
   animation.finished.catch(()=>{}).finally(()=>running.delete(animation));
  }
  reduced.addEventListener('change',()=>{if(reduced.matches)running.forEach(a=>a.cancel())});
- document.querySelectorAll('header .hero>*,body>.hero>*,body[data-article] main h1').forEach((el,i)=>{
+ document.querySelectorAll('header .hero>*:not(.site-ambient),body>.hero>*:not(.site-ambient),body[data-article] main h1').forEach((el,i)=>{
   if(el.getBoundingClientRect().top<innerHeight)enter(el,Math.min(i,2)*70);
  });
  const selector='.section-head,.pillar,.card,.feature,.topic,.work,.media-card,.video,.step,.quote blockquote';
