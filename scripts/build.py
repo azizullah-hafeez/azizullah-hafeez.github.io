@@ -43,7 +43,8 @@ for source in sources:
 base_urls=[
  ('','2026-09-05','monthly','1.0'),('blog.html',None,'weekly','0.9'),
  ('activities.html','2026-09-05',None,None),('media.html','2026-09-05',None,None),
- ('courses.html','2026-09-06','weekly','0.9')]
+ ('courses.html','2026-09-06','weekly','0.9'),
+ ('event-ai-culture-webinar.html','2026-09-23','monthly','0.8')]
 articles=[]
 for source in sources:
  if not source.name.startswith('article-'):continue
