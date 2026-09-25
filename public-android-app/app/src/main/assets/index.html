@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#F7F7F2">
+<title>خانه‌یار</title>
+<style>
+:root{--olive:#2f6b48;--olive2:#e8f1ea;--gold:#c9a959;--bg:#f7f7f2;--card:#fff;--text:#172019;--muted:#6f786f;--line:#dde3dc;--red:#a74141;--amber:#8a6200;--green:#23613d;--shadow:0 7px 25px rgba(40,55,44,.06)}
+*{box-sizing:border-box}html,body{margin:0;background:var(--bg);color:var(--text);font-family:Tahoma,Arial,sans-serif}button,input,select{font:inherit}
+header{position:sticky;top:0;z-index:8;background:rgba(247,247,242,.97);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);padding:12px 14px}
+.head{max-width:1050px;margin:auto;display:flex;align-items:center;gap:10px}.brand{display:flex;align-items:center;gap:10px}.logo{width:40px;height:40px;border-radius:14px;background:var(--olive);display:grid;place-items:center;color:#fff;font-size:21px}
+.brand b{font-size:18px}.brand small{display:block;color:var(--muted);font-size:10px;margin-top:2px}.currency{margin-right:auto;background:var(--olive2);color:var(--olive);border:1px solid #d2e3d7;border-radius:99px;padding:7px 10px;font-size:11px;font-weight:800}
+nav{position:sticky;top:65px;z-index:7;display:flex;gap:5px;overflow:auto;background:#fff;border-bottom:1px solid var(--line);padding:8px 10px}nav button{white-space:nowrap;border:0;background:transparent;border-radius:11px;padding:9px 11px;color:#465047}nav button.on{background:var(--olive2);color:var(--olive);font-weight:900}
+main{max-width:1050px;margin:auto;padding:14px}.view{display:none}.view.on{display:block}
+.grid{display:grid;gap:11px}.g4{grid-template-columns:repeat(4,1fr)}.g3{grid-template-columns:repeat(3,1fr)}.g2{grid-template-columns:repeat(2,1fr)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:14px;margin-bottom:12px;box-shadow:var(--shadow)}.section{font-weight:900;font-size:14px;margin:0 0 11px}.metric span{font-size:11px;color:var(--muted)}.metric b{display:block;font-size:22px;margin:7px 0}.muted{color:var(--muted);font-size:11px;line-height:1.8}
+.row{display:flex;align-items:center;gap:8px;flex-wrap:wrap}.left{margin-right:auto}.pill{display:inline-block;padding:5px 8px;border-radius:99px;background:#f0f3f0;font-size:10px;color:#55605a}.pill.green{background:var(--olive2);color:var(--olive)}
+.btn{border:1px solid var(--line);background:#fff;padding:9px 11px;border-radius:11px;color:var(--text)}.btn.primary{background:var(--olive);border-color:var(--olive);color:white}.btn.danger{color:var(--red)}.btn.small{padding:6px 8px;font-size:11px}
+.form{display:grid;grid-template-columns:repeat(4,1fr);gap:9px}.f label{display:block;color:var(--muted);font-size:10px;margin:0 0 4px}.f input,.f select{width:100%;padding:10px;border:1px solid var(--line);background:#fff;border-radius:11px;outline:none}.f input:focus,.f select:focus{border-color:#86aa92}
+.notice{padding:11px 12px;border:1px solid var(--line);border-radius:13px;background:#fafbf9;font-size:11px;line-height:1.9;margin:8px 0}.notice.ok{background:#edf7f0;color:#215f3a;border-color:#d3ead9}.notice.warn{background:#fff8e8;color:#785500;border-color:#f1e2b6}.notice.bad{background:#fff0f0;color:#8b3030;border-color:#efcece}
+table{width:100%;border-collapse:collapse;font-size:11px}th,td{padding:9px 7px;border-bottom:1px solid var(--line);text-align:right;vertical-align:middle}th{color:var(--muted);background:#fafbf9;position:sticky;top:0}.scroll{overflow:auto;border-radius:11px}
+.meal{border:1px solid var(--line);border-radius:15px;padding:12px;background:#fff}.day{color:var(--olive);font-weight:900}.mealname{font-weight:900;line-height:1.7;margin:5px 0}.cost{font-weight:900;font-size:12px}
+.bar{height:8px;border-radius:99px;background:#eef1ed;overflow:hidden;margin-top:6px}.bar i{display:block;height:100%;background:var(--olive)}
+.priceup{color:var(--red);font-weight:900}.pricedown{color:var(--green);font-weight:900}
+.overlay{position:fixed;inset:0;background:rgba(18,28,21,.48);z-index:20;display:none;align-items:center;justify-content:center;padding:18px}.overlay.on{display:flex}.modal{width:min(590px,100%);max-height:90vh;overflow:auto;background:#fff;border-radius:22px;padding:18px;box-shadow:0 30px 80px rgba(0,0,0,.25)}.modal h2{margin:0 0 6px}.hero{background:linear-gradient(140deg,#2f6b48,#527e5f);color:white;border-radius:18px;padding:18px;margin-bottom:13px}.hero small{opacity:.8}.hero h2{margin:7px 0}.hero p{font-size:12px;line-height:1.9;margin:0;opacity:.93}
+.recipe-row{display:grid;grid-template-columns:1.4fr .7fr auto;gap:6px;margin:6px 0}.recipe-row select,.recipe-row input{width:100%;padding:8px;border:1px solid var(--line);border-radius:9px}
+.footer{padding:20px;text-align:center;color:var(--muted);font-size:10px}.switch{display:flex;gap:6px}.switch button.on{background:var(--olive2);border-color:#cce1d2;color:var(--olive);font-weight:900}
+details{border:1px solid var(--line);border-radius:13px;padding:10px;margin:7px 0}summary{font-weight:800;cursor:pointer}
+@media(max-width:800px){.g4{grid-template-columns:1fr 1fr}.g3,.g2,.form{grid-template-columns:1fr 1fr}}
+@media(max-width:520px){.g4,.g3,.g2,.form{grid-template-columns:1fr}.currency{display:none}main{padding:10px}.recipe-row{grid-template-columns:1fr .65fr auto}}
+</style>
+</head>
+<body>
+<header><div class="head"><div class="brand"><div class="logo">🫒</div><div><b>خانه‌یار</b><small>مدیریت غذای خانواده • گروه نرم‌افزاری زیتون</small></div></div><div class="currency" id="currencyBadge"></div></div></header>
+<nav id="nav">
+<button class="on" data-v="dash">داشبورد</button><button data-v="plan">برنامه</button><button data-v="market">قیمت بازار</button><button data-v="buy">خرید</button><button data-v="stock">موجودی</button><button data-v="shop">لیست خرید</button><button data-v="smart">هوشمند</button><button data-v="settings">تنظیمات</button><button data-v="about">درباره</button>
+</nav>
+<main>
+<section class="view on" id="dash"><div id="hero"></div><div class="grid g4" id="metrics"></div><div class="grid g2"><div class="card"><div class="section">هزینهٔ شام‌های هفته</div><div id="mealBars"></div></div><div class="card"><div class="section">وضعیت برنامه</div><div id="quickInsights"></div></div></div><div class="card"><div class="section">آخرین فعالیت‌ها</div><div id="recent"></div></div></section>
+
+<section class="view" id="plan">
+<div class="card"><div class="row"><div class="section">برنامهٔ ثابت هفتگی</div><button class="btn small left" onclick="openMealEditor()">+ غذای جدید</button></div><div class="grid g2" id="planCards"></div></div>
+<div class="card"><div class="section">کتابخانه غذاها</div><div class="scroll" id="mealLibrary"></div></div>
+</section>
+
+<section class="view" id="market">
+<div class="card"><div class="section">ثبت قیمت بازار — بدون خرید</div><div class="notice">برای قیمت‌گیری کافی است قیمت را ثبت کنید؛ موجودی خانه تغییر نمی‌کند. آخرین قیمت ثبت‌شده می‌تواند مبنای محاسبات برنامه باشد.</div><div class="form">
+<div class="f"><label>کالا</label><select id="qIng"></select></div><div class="f"><label id="qQtyLabel">مقدار</label><input id="qQty" type="number" step=".01"></div><div class="f"><label>قیمت کل</label><input id="qTotal" type="number" step=".01"></div><div class="f"><label>بازار/فروشگاه</label><input id="qShop"></div>
+<div class="f"><label>تاریخ</label><input id="qDate" type="date"></div><div class="f"><label>مبنای محاسبه شود؟</label><select id="qUse"><option value="1">بله</option><option value="0">خیر</option></select></div><div class="f"><label>قیمت واحد</label><input id="qUnit" readonly></div><div class="f" style="align-self:end"><button class="btn primary" onclick="saveQuote()">ثبت قیمت</button></div>
+</div></div>
+<div class="card"><div class="section">قیمت‌های فعلی</div><div class="scroll" id="currentPrices"></div></div>
+<div class="card"><div class="section">تاریخچهٔ قیمت‌گیری</div><div class="scroll" id="quoteHistory"></div></div>
+</section>
+
+<section class="view" id="buy">
+<div class="card"><div class="section">ثبت خرید واقعی</div><div class="form">
+<div class="f"><label>کالا</label><select id="bIng"></select></div><div class="f"><label id="bQtyLabel">مقدار</label><input id="bQty" type="number" step=".01"></div><div class="f"><label>مبلغ کل</label><input id="bTotal" type="number" step=".01"></div><div class="f"><label>بازار/فروشگاه</label><input id="bShop"></div>
+<div class="f"><label>تاریخ</label><input id="bDate" type="date"></div><div class="f"><label>افزودن به موجودی</label><select id="bStock"><option value="1">بله</option><option value="0">خیر</option></select></div><div class="f"><label>قیمت واحد</label><input id="bUnit" readonly></div><div class="f" style="align-self:end"><button class="btn primary" onclick="savePurchase()">ثبت خرید</button></div>
+</div></div>
+<div class="card"><div class="section">تاریخچهٔ خرید</div><div class="scroll" id="purchaseHistory"></div></div>
+</section>
+
+<section class="view" id="stock">
+<div class="card"><div class="row"><div class="section">موجودی خانه</div><button class="btn small left" onclick="consumeWeek()">ثبت مصرف یک هفته</button></div><div class="scroll" id="stockTable"></div></div>
+</section>
+
+<section class="view" id="shop">
+<div class="card"><div class="row"><div class="section">لیست خرید</div><div class="switch left"><button class="btn small on" id="shopW1" onclick="setShopWeeks(1)">یک هفته</button><button class="btn small" id="shopWm" onclick="setShopWeeks(S.settings.weeks)">یک ماه</button></div></div><div id="shoppingList"></div></div>
+</section>
+
+<section class="view" id="smart"><div class="card"><div class="section">تحلیل هوشمند آفلاین</div><div id="insights"></div></div></section>
+
+<section class="view" id="settings">
+<div class="card"><div class="section">خانواده و بودجه</div><div class="form">
+<div class="f"><label>تعداد اعضای خانواده</label><input id="sFamily" type="number" min="1"></div><div class="f"><label>بودجهٔ ماهانه غذا</label><input id="sBudget" type="number" min="0"></div><div class="f"><label>هفته در ماه</label><input id="sWeeks" type="number" min="4" max="5" step=".001"></div><div class="f" style="align-self:end"><button class="btn primary" onclick="saveBasicSettings()">ذخیره</button></div>
+</div></div>
+
+<div class="card"><div class="section">کشور و واحدها</div><div class="notice warn"><b>واحد پول فقط از همین بخش تغییر می‌کند.</b> خانه‌یار برای افغانستان ساخته شده و پیش‌فرض آن افغانی است. اگر واحد پول را پس از ثبت داده تغییر می‌دهید، می‌توانید ضریب تبدیل وارد کنید تا اعداد قبلی هم تبدیل شوند.</div><div class="form">
+<div class="f"><label>واحد پول</label><select id="sCurrency"></select></div><div class="f"><label>ضریب تبدیل داده‌های قبلی</label><input id="sFactor" type="number" step=".000001" placeholder="مثلاً 1 یا نرخ تبدیل"></div><div class="f"><label>واحد وزن</label><select id="sWeight"><option value="kg">کیلوگرم</option><option value="lb">پوند</option></select></div><div class="f"><label>واحد مایعات</label><select id="sVolume"><option value="l">لیتر</option><option value="gal">گالن</option></select></div>
+<div class="f" id="customCurrencyWrap" style="display:none"><label>نماد واحد سفارشی</label><input id="sCustomSymbol" placeholder="مثلاً د.ا"></div><div class="f" style="align-self:end"><button class="btn primary" onclick="saveLocaleSettings()">اعمال تنظیمات</button></div>
+</div></div>
+
+<div class="card"><div class="section">مواد غذایی</div><div class="form">
+<div class="f"><label>نام ماده جدید</label><input id="newIngName"></div><div class="f"><label>نوع</label><select id="newIngType"><option value="weight">وزنی</option><option value="volume">مایع</option><option value="count">عددی</option></select></div><div class="f"><label>گروه</label><select id="newIngCat"><option value="grain">غلات</option><option value="legume">حبوبات</option><option value="poultry">مرغ</option><option value="meat">گوشت</option><option value="egg">تخم‌مرغ</option><option value="vegetable">سبزیجات</option><option value="dairy">لبنیات</option><option value="fruit">میوه</option><option value="other">سایر</option></select></div><div class="f" style="align-self:end"><button class="btn" onclick="addIngredient()">افزودن</button></div>
+</div></div>
+
+<div class="card"><div class="section">پشتیبان و انتقال</div><div class="row"><button class="btn" onclick="exportData()">ذخیره پشتیبان</button><label class="btn">بازیابی پشتیبان<input type="file" accept="application/json" style="display:none" onchange="importData(event)"></label><button class="btn danger" onclick="resetAll()">بازنشانی برنامه</button></div></div>
+</section>
+
+<section class="view" id="about">
+<div class="hero"><small>خانه‌یار • KhanehYar</small><h2>برنامه‌ریزی غذای خانواده، بدون حدس روزانه</h2><p>برنامه هفتگی، قیمت واقعی بازار، خرید، موجودی، بودجه و تحلیل هوشمند در یک جا. طراحی‌شده با تمرکز بر خانواده‌های افغانستان، اما قابل استفاده در کشورهای دیگر.</p></div>
+<div class="card"><div class="section">توسعه‌دهنده</div><b>گروه نرم‌افزاری زیتون</b><div class="muted">Zeytoon Software Group</div></div>
+<div class="card"><div class="section">حریم خصوصی</div><div class="notice ok"><b>داده‌ها روی دستگاه شما می‌مانند.</b><br>این نسخه حساب کاربری، تبلیغات، ردیاب، سرور ابری و جمع‌آوری داده شخصی ندارد. قیمت‌ها، خریدها، موجودی و برنامه غذایی در حافظه محلی اپ ذخیره می‌شوند. حذف برنامه می‌تواند این داده‌ها را پاک کند؛ بنابراین از بخش تنظیمات پشتیبان بگیرید.</div></div>
+<div class="card"><div class="section">نسخه و مسئولیت</div><div class="muted">نسخه 1.0.0 • خانه‌یار ابزار برنامه‌ریزی و بودجه‌بندی است و جایگزین مشاوره پزشکی یا تغذیه تخصصی نیست. تحلیل‌های «هوشمند» این نسخه به‌صورت آفلاین و قاعده‌محور انجام می‌شوند.</div></div>
+</section>
+<div class="footer">خانه‌یار • ساخته‌شده توسط گروه نرم‌افزاری زیتون</div>
+</main>
+
+<div class="overlay" id="onboarding"><div class="modal"><div class="hero"><small>خوش آمدید</small><h2>خانه‌یار برای افغانستان آماده است 🇦🇫</h2><p>واحد پول پیش‌فرض افغانی است. بعداً فقط از تنظیمات می‌توانید کشور/واحد پول و واحدهای اندازه‌گیری را تغییر دهید.</p></div><div class="form"><div class="f"><label>تعداد اعضای خانواده</label><input id="oFamily" type="number" value="4" min="1"></div><div class="f"><label>بودجه ماهانه تقریبی</label><input id="oBudget" type="number" value="9000"></div></div><div style="height:10px"></div><button class="btn primary" style="width:100%" onclick="finishOnboarding()">شروع برنامه</button></div></div>
+
+<div class="overlay" id="mealEditor"><div class="modal"><div class="row"><h2>غذای جدید</h2><button class="btn small left" onclick="closeMealEditor()">بستن</button></div><div class="f"><label>نام غذا</label><input id="mName"></div><div style="height:8px"></div><div class="section">مواد لازم برای یک وعده خانوادگی</div><div id="recipeRows"></div><button class="btn small" onclick="addRecipeRow()">+ ماده</button><div style="height:12px"></div><button class="btn primary" style="width:100%" onclick="saveMeal()">ذخیره غذا</button></div></div>
+
+<script>
+var KEY='zeytoon_khanehyar_public_v1';
+var DAYS=['شنبه','یکشنبه','دوشنبه','سه‌شنبه','چهارشنبه','پنجشنبه','جمعه'];
+var CURRENCIES={
+ AFN:{name:'افغانی افغانستان',symbol:'؋',decimals:0},
+ IRR:{name:'ریال ایران',symbol:'ریال',decimals:0},
+ PKR:{name:'روپیه پاکستان',symbol:'Rs',decimals:0},
+ INR:{name:'روپیه هند',symbol:'₹',decimals:0},
+ USD:{name:'دالر امریکا',symbol:'$',decimals:2},
+ EUR:{name:'یورو',symbol:'€',decimals:2},
+ TRY:{name:'لیره ترکیه',symbol:'₺',decimals:2},
+ CUSTOM:{name:'واحد سفارشی',symbol:'¤',decimals:0}
+};
+var INIT={
+ settings:{onboarded:false,family:4,budget:9000,weeks:4.345,currency:'AFN',customSymbol:'',weightUnit:'kg',volumeUnit:'l'},
+ ingredients:[
+ {id:'rice',name:'برنج',type:'weight',cat:'grain',price:120,source:'sample'},
+ {id:'lentil',name:'عدس',type:'weight',cat:'legume',price:110,source:'sample'},
+ {id:'chickpea',name:'نخود',type:'weight',cat:'legume',price:100,source:'sample'},
+ {id:'mung',name:'ماش',type:'weight',cat:'legume',price:110,source:'sample'},
+ {id:'chicken',name:'مرغ',type:'weight',cat:'poultry',price:250,source:'sample'},
+ {id:'beef',name:'گوشت گوساله',type:'weight',cat:'meat',price:470,source:'sample'},
+ {id:'egg',name:'تخم‌مرغ',type:'count',cat:'egg',price:8.33,source:'sample'},
+ {id:'potato',name:'کچالو',type:'weight',cat:'vegetable',price:35,source:'sample'},
+ {id:'onion',name:'پیاز',type:'weight',cat:'vegetable',price:25,source:'sample'},
+ {id:'tomato',name:'گوجه',type:'weight',cat:'vegetable',price:40,source:'sample'},
+ {id:'carrot',name:'هویج',type:'weight',cat:'vegetable',price:35,source:'sample'},
+ {id:'eggplant',name:'بادمجان',type:'weight',cat:'vegetable',price:35,source:'sample'},
+ {id:'cucumber',name:'خیار',type:'weight',cat:'vegetable',price:40,source:'sample'},
+ {id:'oil',name:'روغن',type:'volume',cat:'other',price:120,source:'sample'},
+ {id:'bread',name:'نان',type:'count',cat:'grain',price:10,source:'sample'}
+ ],
+ meals:[
+ {id:'m1',name:'دال عدس + برنج + سالاد',r:[['rice',.7],['lentil',.45],['tomato',.3],['cucumber',.3],['onion',.2],['oil',.07]]},
+ {id:'m2',name:'شوربای نخود، کچالو و هویج + نان',r:[['chickpea',.45],['potato',.8],['carrot',.35],['onion',.25],['tomato',.25],['oil',.05],['bread',6]]},
+ {id:'m3',name:'شوربای مرغ و سبزیجات + نان',r:[['chicken',1],['potato',.8],['carrot',.35],['onion',.25],['tomato',.25],['oil',.05],['bread',6]]},
+ {id:'m4',name:'ماش‌پلو',r:[['mung',.45],['rice',.7],['onion',.2],['oil',.06]]},
+ {id:'m5',name:'قورمه بادمجان، کچالو و نخود + نان',r:[['eggplant',1],['potato',.7],['chickpea',.35],['onion',.25],['tomato',.35],['oil',.07],['bread',6]]},
+ {id:'m6',name:'تخم‌مرغ و کچالو + نان + سبزی',r:[['egg',8],['potato',1],['onion',.2],['tomato',.3],['oil',.05],['bread',6]]},
+ {id:'m7',name:'قورمه گوشت + برنج + سالاد',r:[['beef',.6],['rice',.7],['onion',.3],['tomato',.3],['cucumber',.3],['oil',.07]]},
+ {id:'m8',name:'لوبیاپلو',r:[['rice',.7],['chickpea',.4],['onion',.2],['tomato',.25],['oil',.06]]},
+ {id:'m9',name:'بولانی کچالو + ماست/چاشنی',r:[['potato',1.1],['onion',.2],['oil',.08]]},
+ {id:'m10',name:'عدس‌پلو',r:[['rice',.7],['lentil',.4],['onion',.2],['oil',.06]]}
+ ],
+ plan:['m1','m2','m3','m4','m5','m6','m7'],
+ quotes:[],purchases:[],inventory:{},shopWeeks:1
+};
+function clone(x){return JSON.parse(JSON.stringify(x))}
+var S=load();
+function load(){try{var x=JSON.parse(localStorage.getItem(KEY));if(x&&x.settings&&x.ingredients&&x.meals&&x.plan)return x}catch(e){}return clone(INIT)}
+function save(){localStorage.setItem(KEY,JSON.stringify(S))}
+function ing(id){return S.ingredients.find(function(x){return x.id===id})||null}
+function meal(id){return S.meals.find(function(x){return x.id===id})||null}
+function esc(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
+function cur(){var c=CURRENCIES[S.settings.currency]||CURRENCIES.AFN;if(S.settings.currency==='CUSTOM')return {name:'سفارشی',symbol:S.settings.customSymbol||'¤',decimals:0};return c}
+function money(v){var c=cur(),n=Number(v||0).toLocaleString('fa-IR',{minimumFractionDigits:c.decimals,maximumFractionDigits:c.decimals});return n+' '+c.symbol}
+function baseFactor(type){if(type==='weight')return S.settings.weightUnit==='lb'?.45359237:1;if(type==='volume')return S.settings.volumeUnit==='gal'?3.785411784:1;return 1}
+function unitLabel(z){if(z.type==='weight')return S.settings.weightUnit==='lb'?'پوند':'کیلو';if(z.type==='volume')return S.settings.volumeUnit==='gal'?'گالن':'لیتر';return 'عدد'}
+function displayQty(base,z){return base/baseFactor(z.type)}
+function toBase(display,z){return display*baseFactor(z.type)}
+function displayUnitPrice(z){return z.price*baseFactor(z.type)}
+function qtyText(base,z){return (Math.round(displayQty(base,z)*100)/100).toLocaleString('fa-IR')+' '+unitLabel(z)}
+function mealCost(m){if(!m)return 0;return m.r.reduce(function(t,a){var z=ing(a[0]);return t+(z?z.price*a[1]:0)},0)}
+function weekCost(){return S.plan.reduce(function(t,id){return t+mealCost(meal(id))},0)}
+function monthlyDinner(){return weekCost()*S.settings.weeks}
+function req(w){var o={};S.plan.forEach(function(id){var m=meal(id);if(!m)return;m.r.forEach(function(a){o[a[0]]=(o[a[0]]||0)+a[1]*w})});return o}
+function today(){return new Date().toISOString().slice(0,10)}
+function el(id){return document.getElementById(id)}
+function priceChanges(id){var a=[];S.quotes.concat(S.purchases).filter(function(x){return x.id===id}).sort(function(a,b){return a.ts-b.ts}).forEach(function(x){a.push(x)});if(a.length<2)return null;var p=a[a.length-2].baseUnitPrice,l=a[a.length-1].baseUnitPrice;return p?((l-p)/p*100):0}
+function proteinOf(m){var cats={};m.r.forEach(function(a){var z=ing(a[0]);if(z)cats[z.cat]=1});if(cats.meat)return'meat';if(cats.poultry)return'poultry';if(cats.egg)return'egg';if(cats.legume)return'legume';return'none'}
+function render(){
+ el('currencyBadge').textContent='واحد پول: '+cur().name;
+ if(!S.settings.onboarded)el('onboarding').classList.add('on');else el('onboarding').classList.remove('on');
+ renderDash();renderPlan();renderMarket();renderPurchases();renderStock();renderShop();renderSmart();renderSettings();
+}
+function renderDash(){
+ var wc=weekCost(),mc=monthlyDinner(),remain=S.settings.budget-mc,per=wc/Math.max(1,S.settings.family);
+ el('hero').innerHTML='<div class="hero"><small>برنامه‌ریزی هفتگی</small><h2>هر روز از قبل معلوم؛ هر خرید قابل محاسبه.</h2><p>قیمت‌های نمونه را با قیمت واقعی بازار خودت جایگزین کن تا هزینهٔ غذا، خرید هفته و بودجهٔ ماه دقیق شود.</p></div>';
+ el('metrics').innerHTML=metric('شام هفته',money(wc),'با قیمت‌های فعلی')+metric('شام ماه',money(mc),S.settings.weeks.toFixed(2)+' هفته')+metric('هزینه هر نفر/هفته',money(per),'تقریبی')+metric('مانده بودجه',money(remain),remain>=0?'برای صبحانه، چاشت و سایر اقلام':'بودجه نیاز به اصلاح دارد');
+ var max=1;S.plan.forEach(function(id){max=Math.max(max,mealCost(meal(id)))});
+ el('mealBars').innerHTML=S.plan.map(function(id,i){var m=meal(id),c=mealCost(m);return '<div style="margin:9px 0"><div class="row"><b>'+DAYS[i]+'</b><span class="left">'+money(c)+'</span></div><div class="muted">'+esc(m?m.name:'—')+'</div><div class="bar"><i style="width:'+(c/max*100)+'%"></i></div></div>'}).join('');
+ var qi=buildQuickInsights();el('quickInsights').innerHTML=qi.map(function(x){return '<div class="notice '+x[0]+'"><b>'+x[1]+'</b><br>'+x[2]+'</div>'}).join('');
+ var acts=[];S.purchases.slice(-3).reverse().forEach(function(x){var z=ing(x.id);acts.push('خرید '+(z?z.name:'کالا')+' — '+money(x.total)+' — '+x.date)});S.quotes.slice(-3).reverse().forEach(function(x){var z=ing(x.id);acts.push('قیمت‌گیری '+(z?z.name:'کالا')+' — '+money(x.total)+' — '+x.date)});el('recent').innerHTML=acts.length?acts.slice(0,5).map(function(x){return '<div class="notice">'+esc(x)+'</div>'}).join(''):'<div class="muted">هنوز قیمت یا خریدی ثبت نشده.</div>'
+}
+function metric(a,b,c){return '<div class="card metric"><span>'+a+'</span><b>'+b+'</b><span>'+c+'</span></div>'}
+function buildQuickInsights(){var out=[],sample=S.ingredients.filter(function(z){return z.source==='sample'}).length;if(sample)out.push(['warn','هنوز '+sample+' قیمت نمونه دارید','برای محاسبه دقیق‌تر، قیمت واقعی بازار را در بخش «قیمت بازار» ثبت کنید.']);var ratio=monthlyDinner()/Math.max(1,S.settings.budget)*100;if(ratio>75)out.push(['bad','فشار بودجه بالا','شام‌ها بیش از '+Math.round(ratio)+'٪ بودجه ماه را مصرف می‌کنند.']);else out.push(['ok','ساختار بودجه قابل کنترل است','سهم شام‌ها حدود '+Math.round(ratio)+'٪ از بودجه تعریف‌شده است.']);return out}
+function renderPlan(){
+ var opts=S.meals.map(function(m){return '<option value="'+m.id+'">'+esc(m.name)+'</option>'}).join('');
+ el('planCards').innerHTML=DAYS.map(function(d,i){return '<div class="meal"><div class="day">'+d+'</div><select style="width:100%;padding:9px;border:1px solid var(--line);border-radius:10px;margin:7px 0" onchange="changePlan('+i+',this.value)">'+opts.replace('value="'+S.plan[i]+'"','value="'+S.plan[i]+'" selected')+'</select><div class="cost">'+money(mealCost(meal(S.plan[i])))+'</div><div class="muted">'+recipeText(meal(S.plan[i]))+'</div></div>'}).join('');
+ el('mealLibrary').innerHTML='<table><tr><th>غذا</th><th>هزینه</th><th>مواد</th></tr>'+S.meals.map(function(m){return '<tr><td><b>'+esc(m.name)+'</b></td><td>'+money(mealCost(m))+'</td><td>'+recipeText(m)+'</td></tr>'}).join('')+'</table>'
+}
+function recipeText(m){if(!m)return'—';return m.r.map(function(a){var z=ing(a[0]);return z?esc(z.name)+' '+qtyText(a[1],z):''}).join('، ')}
+function changePlan(i,id){S.plan[i]=id;save();render()}
+function openMealEditor(){el('mealEditor').classList.add('on');el('mName').value='';el('recipeRows').innerHTML='';addRecipeRow();addRecipeRow()}
+function closeMealEditor(){el('mealEditor').classList.remove('on')}
+function ingredientOptions(){return S.ingredients.map(function(z){return '<option value="'+z.id+'">'+esc(z.name)+'</option>'}).join('')}
+function addRecipeRow(){var d=document.createElement('div');d.className='recipe-row';d.innerHTML='<select>'+ingredientOptions()+'</select><input type="number" min="0" step=".01" placeholder="مقدار"><button class="btn small danger" onclick="this.parentNode.remove()">×</button>';el('recipeRows').appendChild(d)}
+function saveMeal(){var name=el('mName').value.trim();if(!name){alert('نام غذا را وارد کنید');return}var rows=el('recipeRows').querySelectorAll('.recipe-row'),r=[];rows.forEach(function(row){var id=row.querySelector('select').value,z=ing(id),q=parseFloat(row.querySelector('input').value);if(z&&q>0)r.push([id,toBase(q,z)])});if(!r.length){alert('حداقل یک ماده وارد کنید');return}var id='u'+Date.now();S.meals.push({id:id,name:name,r:r});save();closeMealEditor();render()}
+function fillIngSelect(id){el(id).innerHTML=S.ingredients.map(function(z){return '<option value="'+z.id+'">'+esc(z.name)+'</option>'}).join('')}
+function calcEntry(prefix){var z=ing(el(prefix+'Ing').value),q=+el(prefix+'Qty').value,t=+el(prefix+'Total').value;if(!z){return}el(prefix+'QtyLabel').textContent='مقدار ('+unitLabel(z)+')';el(prefix+'Unit').value=q>0&&t>0?money(t/q)+' / '+unitLabel(z):''}
+function renderMarket(){
+ fillIngSelect('qIng');if(!el('qDate').value)el('qDate').value=today();calcEntry('q');
+ el('currentPrices').innerHTML='<table><tr><th>کالا</th><th>قیمت واحد</th><th>منبع</th><th>تغییر</th></tr>'+S.ingredients.map(function(z){var ch=priceChanges(z.id),cls=ch>0?'priceup':ch<0?'pricedown':'';return '<tr><td>'+esc(z.name)+'</td><td>'+money(displayUnitPrice(z))+' / '+unitLabel(z)+'</td><td>'+(z.source==='sample'?'<span class="pill">نمونه</span>':'<span class="pill green">واقعی</span>')+'</td><td class="'+cls+'">'+(ch==null?'—':(ch>0?'+':'')+Math.round(ch)+'٪')+'</td></tr>'}).join('')+'</table>';
+ el('quoteHistory').innerHTML=S.quotes.length?'<table><tr><th>تاریخ</th><th>کالا</th><th>مقدار</th><th>قیمت</th><th>بازار</th></tr>'+S.quotes.slice().reverse().map(function(x){var z=ing(x.id);return '<tr><td>'+x.date+'</td><td>'+esc(z?z.name:x.id)+'</td><td>'+qtyText(x.baseQty,z)+'</td><td>'+money(x.total)+'</td><td>'+esc(x.shop||'—')+'</td></tr>'}).join('')+'</table>':'<div class="muted">هنوز قیمت‌گیری ثبت نشده.</div>'
+}
+function saveQuote(){var z=ing(el('qIng').value),qd=+el('qQty').value,total=+el('qTotal').value;if(!z||qd<=0||total<=0){alert('مقدار و قیمت را درست وارد کنید');return}var bq=toBase(qd,z),basePrice=total/bq;S.quotes.push({id:z.id,baseQty:bq,total:total,baseUnitPrice:basePrice,date:el('qDate').value||today(),shop:el('qShop').value,ts:Date.now()});if(el('qUse').value==='1'){z.price=basePrice;z.source='market'}save();el('qQty').value='';el('qTotal').value='';el('qShop').value='';render()}
+function renderPurchases(){fillIngSelect('bIng');if(!el('bDate').value)el('bDate').value=today();calcEntry('b');el('purchaseHistory').innerHTML=S.purchases.length?'<table><tr><th>تاریخ</th><th>کالا</th><th>مقدار</th><th>قیمت</th><th>بازار</th></tr>'+S.purchases.slice().reverse().map(function(x){var z=ing(x.id);return '<tr><td>'+x.date+'</td><td>'+esc(z?z.name:x.id)+'</td><td>'+qtyText(x.baseQty,z)+'</td><td>'+money(x.total)+'</td><td>'+esc(x.shop||'—')+'</td></tr>'}).join('')+'</table>':'<div class="muted">هنوز خریدی ثبت نشده.</div>'}
+function savePurchase(){var z=ing(el('bIng').value),qd=+el('bQty').value,total=+el('bTotal').value;if(!z||qd<=0||total<=0){alert('مقدار و قیمت را درست وارد کنید');return}var bq=toBase(qd,z),basePrice=total/bq;S.purchases.push({id:z.id,baseQty:bq,total:total,baseUnitPrice:basePrice,date:el('bDate').value||today(),shop:el('bShop').value,ts:Date.now()});z.price=basePrice;z.source='purchase';if(el('bStock').value==='1')S.inventory[z.id]=(S.inventory[z.id]||0)+bq;save();el('bQty').value='';el('bTotal').value='';el('bShop').value='';render()}
+function renderStock(){el('stockTable').innerHTML='<table><tr><th>کالا</th><th>موجودی</th><th></th></tr>'+S.ingredients.map(function(z){return '<tr><td>'+esc(z.name)+'</td><td>'+qtyText(S.inventory[z.id]||0,z)+'</td><td><button class="btn small" onclick="editStock(\''+z.id+'\')">ویرایش</button></td></tr>'}).join('')+'</table>'}
+function editStock(id){var z=ing(id),old=displayQty(S.inventory[id]||0,z),v=prompt('موجودی '+z.name+' به '+unitLabel(z),old);if(v===null)return;v=+v;if(isNaN(v)||v<0)return;S.inventory[id]=toBase(v,z);save();render()}
+function consumeWeek(){if(!confirm('مواد یک هفته برنامه از موجودی کم شود؟'))return;var r=req(1);Object.keys(r).forEach(function(id){S.inventory[id]=Math.max(0,(S.inventory[id]||0)-r[id])});save();render()}
+function setShopWeeks(w){S.shopWeeks=w;save();renderShop()}
+function renderShop(){el('shopW1').classList.toggle('on',S.shopWeeks===1);el('shopWm').classList.toggle('on',S.shopWeeks!==1);var r=req(S.shopWeeks||1),rows=[],sum=0;Object.keys(r).forEach(function(id){var z=ing(id),need=Math.max(0,r[id]-(S.inventory[id]||0));if(need>.0001){var c=need*z.price;sum+=c;rows.push([z,need,c])}});rows.sort(function(a,b){return b[2]-a[2]});el('shoppingList').innerHTML='<div class="notice"><b>برآورد خرید: '+money(sum)+'</b><br>نیاز برنامه منهای موجودی خانه، با آخرین قیمت‌های ثبت‌شده.</div><div class="scroll"><table><tr><th>کالا</th><th>مقدار لازم</th><th>هزینه احتمالی</th></tr>'+rows.map(function(a){return '<tr><td>'+esc(a[0].name)+'</td><td>'+qtyText(a[1],a[0])+'</td><td>'+money(a[2])+'</td></tr>'}).join('')+'</table></div>'}
+function buildSmart(){var out=[],mc=monthlyDinner(),ratio=mc/Math.max(1,S.settings.budget)*100;if(ratio>80)out.push(['bad','بودجه فشرده','شام‌های فعلی حدود '+Math.round(ratio)+'٪ بودجه تعریف‌شده را می‌گیرند.']);else out.push(['ok','بودجه شام کنترل‌پذیر','شام‌ها حدود '+Math.round(ratio)+'٪ بودجه ماه را مصرف می‌کنند.']);
+ var costs=S.plan.map(function(id,i){return {i:i,m:meal(id),c:mealCost(meal(id))}}).sort(function(a,b){return b.c-a.c});if(costs[0])out.push(['warn','گران‌ترین شام',DAYS[costs[0].i]+'، '+costs[0].m.name+' با حدود '+money(costs[0].c)+'.']);
+ var p=S.plan.map(function(id){return proteinOf(meal(id))});for(var i=1;i<p.length;i++)if(p[i]!=='none'&&p[i]===p[i-1]){out.push(['warn','تنوع پروتئین','دو روز پشت سر هم منبع پروتئینی مشابه دارید؛ در صورت تمایل یکی را عوض کنید.']);break}
+ var legumes=p.filter(function(x){return x==='legume'}).length;if(legumes>=2)out.push(['ok','حبوبات در برنامه حضور دارند','در این هفته '+legumes+' وعده با منبع اصلی حبوبات دارید.']);else out.push(['warn','حبوبات کم است','افزودن یک وعده حبوبات می‌تواند تنوع و هزینه را بهتر کند.']);
+ var rising=[];S.ingredients.forEach(function(z){var ch=priceChanges(z.id);if(ch!=null&&ch>10)rising.push(z.name+' +'+Math.round(ch)+'٪')});if(rising.length)out.push(['bad','افزایش قیمت بازار',rising.slice(0,4).join('، ')]);
+ var samples=S.ingredients.filter(function(z){return z.source==='sample'});if(samples.length)out.push(['warn','قیمت‌های نمونه','برای '+samples.length+' قلم هنوز قیمت واقعی ثبت نشده است.']);
+ return out}
+function renderSmart(){el('insights').innerHTML=buildSmart().map(function(x){return '<div class="notice '+x[0]+'"><b>'+x[1]+'</b><br>'+x[2]+'</div>'}).join('')+'<div class="muted">تحلیل هوشمند این نسخه آفلاین و قاعده‌محور است و توصیه پزشکی محسوب نمی‌شود.</div>'}
+function renderSettings(){el('sFamily').value=S.settings.family;el('sBudget').value=S.settings.budget;el('sWeeks').value=S.settings.weeks;el('sCurrency').innerHTML=Object.keys(CURRENCIES).map(function(k){return '<option value="'+k+'" '+(k===S.settings.currency?'selected':'')+'>'+CURRENCIES[k].name+'</option>'}).join('');el('sWeight').value=S.settings.weightUnit;el('sVolume').value=S.settings.volumeUnit;el('sCustomSymbol').value=S.settings.customSymbol||'';el('customCurrencyWrap').style.display=el('sCurrency').value==='CUSTOM'?'block':'none'}
+function saveBasicSettings(){S.settings.family=Math.max(1,+el('sFamily').value||1);S.settings.budget=Math.max(0,+el('sBudget').value||0);S.settings.weeks=Math.max(4,Math.min(5,+el('sWeeks').value||4.345));save();render()}
+function scaleMoney(f){S.settings.budget*=f;S.ingredients.forEach(function(z){z.price*=f});S.quotes.forEach(function(x){x.total*=f;x.baseUnitPrice*=f});S.purchases.forEach(function(x){x.total*=f;x.baseUnitPrice*=f})}
+function saveLocaleSettings(){var next=el('sCurrency').value,prev=S.settings.currency,f=+el('sFactor').value;if(next!==prev&&f>0&&f!==1)scaleMoney(f);S.settings.currency=next;S.settings.customSymbol=el('sCustomSymbol').value.trim();S.settings.weightUnit=el('sWeight').value;S.settings.volumeUnit=el('sVolume').value;save();el('sFactor').value='';render();alert('تنظیمات واحدها اعمال شد.')}
+function addIngredient(){var n=el('newIngName').value.trim();if(!n){alert('نام ماده را وارد کنید');return}var id='i'+Date.now();S.ingredients.push({id:id,name:n,type:el('newIngType').value,cat:el('newIngCat').value,price:0,source:'sample'});el('newIngName').value='';save();render()}
+function finishOnboarding(){S.settings.family=Math.max(1,+el('oFamily').value||4);S.settings.budget=Math.max(0,+el('oBudget').value||9000);S.settings.onboarded=true;save();render()}
+function exportData(){var data=JSON.stringify(S,null,2);if(window.Zeytoon&&Zeytoon.saveText)Zeytoon.saveText('khanehyar-backup.json',data);else{var blob=new Blob([data],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='khanehyar-backup.json';a.click()}}
+function importData(e){var f=e.target.files[0];if(!f)return;var r=new FileReader();r.onload=function(){try{var x=JSON.parse(r.result);if(!x.settings||!x.ingredients||!x.meals||!x.plan)throw 0;S=x;save();render();alert('پشتیبان بازیابی شد.')}catch(err){alert('فایل پشتیبان معتبر نیست.')}};r.readAsText(f)}
+function resetAll(){if(confirm('همه قیمت‌ها، خریدها، موجودی و تنظیمات پاک شود؟')){S=clone(INIT);save();render()}}
+el('qIng').addEventListener('change',function(){calcEntry('q')});el('qQty').addEventListener('input',function(){calcEntry('q')});el('qTotal').addEventListener('input',function(){calcEntry('q')});
+el('bIng').addEventListener('change',function(){calcEntry('b')});el('bQty').addEventListener('input',function(){calcEntry('b')});el('bTotal').addEventListener('input',function(){calcEntry('b')});
+el('sCurrency').addEventListener('change',function(){el('customCurrencyWrap').style.display=this.value==='CUSTOM'?'block':'none'});
+el('nav').addEventListener('click',function(e){var b=e.target.closest('button[data-v]');if(!b)return;var id=b.getAttribute('data-v');document.querySelectorAll('.view').forEach(function(v){v.classList.toggle('on',v.id===id)});document.querySelectorAll('nav button').forEach(function(x){x.classList.toggle('on',x===b)});window.scrollTo(0,0)});
+render();
+</script>
+</body>
+</html>

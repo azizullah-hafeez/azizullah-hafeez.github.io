@@ -1,0 +1,19 @@
+Google Play Data safety draft for KhanehYar 1.0
+
+App data collected by developer: No.
+App data shared with third parties: No.
+Account creation: No.
+Ads: No.
+Location: No.
+Contacts: No.
+Photos/videos: No.
+Microphone/camera: No.
+Financial information: No.
+Health data: No.
+Analytics SDK: No.
+Internet permission: No.
+
+User-created meal plans, market prices, purchases, inventory and budget are stored locally on device.
+User may manually export/import a JSON backup using Android Storage Access Framework.
+
+Verify every answer again in Play Console before submission because Google Play forms and definitions can change.

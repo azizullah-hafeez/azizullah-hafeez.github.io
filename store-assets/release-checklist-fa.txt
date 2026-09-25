@@ -1,0 +1,12 @@
+خانه‌یار 1.0 — چک‌لیست نشر
+
+1) package name: af.zeytoon.khanehyar
+2) targetSdk: 36
+3) minSdk: 24
+4) Developer/provider shown in app: گروه نرم‌افزاری زیتون
+5) Default currency: AFN
+6) Currency changes only through Settings
+7) Offline/local data only; no INTERNET permission
+8) Build artifacts: Debug APK + Release AAB
+9) Before public release: install APK on at least 2-3 Android versions and test quote, purchase, stock, backup/restore.
+10) Preserve the upload keystore permanently after signing the Play bundle.

@@ -1,0 +1,27 @@
+plugins {
+  id 'com.android.application'
+}
+
+android {
+  namespace 'af.zeytoon.khanehyar'
+  compileSdk 36
+
+  defaultConfig {
+    applicationId 'af.zeytoon.khanehyar'
+    minSdk 24
+    targetSdk 36
+    versionCode 1
+    versionName '1.0.0'
+  }
+
+  buildTypes {
+    release {
+      minifyEnabled false
+      shrinkResources false
+    }
+  }
+}
+
+dependencies {
+  implementation 'androidx.core:core:1.17.0'
+}
