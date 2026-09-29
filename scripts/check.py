@@ -29,4 +29,10 @@ article_script=(root/'assets/scripts/article.js').read_text()
 assert 'placeArticleMedia' in article_script
 assert "panel.querySelector('p')" in article_script
 assert "insertAdjacentElement('afterend',media)" in article_script
+home=(root/'index.html').read_text()
+assert 'id="latestPosts"' in home and 'id="latestActivities"' in home
+assert home.index('posts.js?v=') < home.index('assets/scripts/index.js?v=')
+assert home.index('assets/scripts/activities-data.js?v=') < home.index('assets/scripts/index.js?v=')
+activities=(root/'activities.html').read_text()
+assert activities.index('assets/scripts/activities-data.js?v=') < activities.index('assets/scripts/activities.js?v=')
 print('Validated',count,'pages.')
