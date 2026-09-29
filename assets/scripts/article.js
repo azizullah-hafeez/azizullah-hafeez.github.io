@@ -9,7 +9,13 @@ function setLang(l){
  localStorage.setItem('hafeez-language',l);
  placeArticleMedia(l);
  const heading=document.querySelector('[data-panel="'+l+'"] h1');
- if(heading)document.title=heading.textContent.trim()+' — Azizullah Hafeez';
+ const seoNode=document.querySelector('script[data-article-seo]');
+ let seo={};try{seo=seoNode?JSON.parse(seoNode.textContent)[l]||{}:{}}catch(e){}
+ if(seo.title)document.title=seo.title;else if(heading)document.title=heading.textContent.trim()+' — Azizullah Hafeez';
+ const description=document.querySelector('meta[name="description"]');if(description&&seo.description)description.content=seo.description;
+ const ogTitle=document.querySelector('meta[property="og:title"]');if(ogTitle)ogTitle.content=seo.ogTitle||heading?.textContent.trim()||document.title;
+ const ogDescription=document.querySelector('meta[property="og:description"]');if(ogDescription&&seo.description)ogDescription.content=seo.description;
+ const url=new URL(location.href);url.searchParams.set('lang',l);history.replaceState(null,'',url);
 }
 document.querySelectorAll('[data-lang]').forEach(x=>x.onclick=()=>setLang(x.dataset.lang));
 setLang(new URLSearchParams(location.search).get('lang')||localStorage.getItem('hafeez-language')||'en');
