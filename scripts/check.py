@@ -35,4 +35,10 @@ assert home.index('posts.js?v=') < home.index('assets/scripts/index.js?v=')
 assert home.index('assets/scripts/activities-data.js?v=') < home.index('assets/scripts/index.js?v=')
 activities=(root/'activities.html').read_text()
 assert activities.index('assets/scripts/activities-data.js?v=') < activities.index('assets/scripts/activities.js?v=')
+research_activity=(root/'activity-herat-domestic-products-research.html').read_text()
+research_tags=Tags(research_activity).tags
+assert {a['data-panel'] for _,a in research_tags if 'data-panel' in a}=={'en','fa','ps','ar'}
+assert research_activity.count('https://forms.gle/fAHUjYHxm2pcVFji9')==4
+assert research_activity.count('target="_blank" rel="noopener noreferrer"')==4
+assert 'activity-herat-domestic-products-research.html' in (root/'sitemap.xml').read_text()
 print('Validated',count,'pages.')
