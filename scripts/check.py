@@ -12,6 +12,7 @@ for p in root.glob('*.html'):
  assert sum(a.get('id')=='siteNav' for _,a in tags)==1,p
  assert 'assets/scripts/site.js?v=' in text and 'assets/styles/site.css?v=' in text,p
  assert text.count('data-cf-beacon=')==1,p
+ assert text.count('data-lang-init')==1,p
  assert 'a1492f2f8a81419e9808279096ab7b60' in text,p
  assert '{{ include:' not in text,p
  for tag,a in tags:

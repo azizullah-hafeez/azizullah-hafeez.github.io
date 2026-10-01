@@ -12,6 +12,9 @@ def expand(text, stack=()):
   return expand(path.read_text(),stack+(name,))
  return re.sub(r'\{\{ include: ([\w.-]+) \}\}',include,text)
 analytics=expand('{{ include: cloudflare-analytics.html }}')
+lang_init='''<script data-lang-init>
+(()=>{try{const r=document.documentElement,v=['en','fa','ps','ar'],q=new URLSearchParams(location.search).get('lang'),s=localStorage.getItem('hafeez-language'),i=r.lang;const l=v.includes(q)?q:v.includes(s)?s:v.includes(i)?i:'en';r.lang=l;r.dir=l==='en'?'ltr':'rtl'}catch(_){}})();
+</script>'''
 def version(m):
  attr,path=m.groups();p=ROOT/path
  if not p.is_file():raise ValueError('Missing asset: '+path)
@@ -33,6 +36,8 @@ if managed_posts:
  existing=combined
 for source in sources:
  text=expand(source.read_text())
+ if 'data-lang-init' not in text:
+  text=text.replace('<head>',f'<head>\n{lang_init}',1)
  if source.name=='blog.html':
   text=re.sub(r'(<span class="count" data-i18n="count">)\d+( articles</span>)',rf'\g<1>{len(existing)}\g<2>',text)
  if 'data-cf-beacon=' not in text:
