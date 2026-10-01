@@ -13,8 +13,9 @@ def expand(text, stack=()):
  return re.sub(r'\{\{ include: ([\w.-]+) \}\}',include,text)
 analytics=expand('{{ include: cloudflare-analytics.html }}')
 lang_init='''<script data-lang-init>
-(()=>{try{const r=document.documentElement,v=['en','fa','ps','ar'],q=new URLSearchParams(location.search).get('lang'),s=localStorage.getItem('hafeez-language'),i=r.lang;const l=v.includes(q)?q:v.includes(s)?s:v.includes(i)?i:'en';r.lang=l;r.dir=l==='en'?'ltr':'rtl'}catch(_){}})();
-</script>'''
+(()=>{try{const r=document.documentElement,v=['en','fa','ps','ar'],p=location.pathname.split('/').filter(Boolean)[0],q=new URLSearchParams(location.search).get('lang'),s=localStorage.getItem('hafeez-language'),i=r.lang;const l=v.includes(p)?p:v.includes(q)?q:v.includes(s)?s:v.includes(i)?i:'en';r.lang=l;r.dir=l==='en'?'ltr':'rtl'}catch(_){}})();
+</script>
+<base href="/">'''
 def version(m):
  attr,path=m.groups();p=ROOT/path
  if not p.is_file():raise ValueError('Missing asset: '+path)
@@ -45,6 +46,10 @@ for source in sources:
  text=re.sub(r'(src|href)="((?:assets/[^"?]+\.(?:css|js)|fonts\.css|posts\.js))(?:\?[^\"]*)?"',version,text)
  if '{{ include:' in text:raise ValueError('Unresolved template')
  (ROOT/source.name).write_text(text)
+ for lang in ('en','fa','ps','ar'):
+  folder=ROOT/lang
+  folder.mkdir(exist_ok=True)
+  (folder/source.name).write_text(text)
 base_urls=[
  ('','2026-09-05','monthly','1.0'),('blog.html',None,'weekly','0.9'),
  ('activities.html','2026-09-05',None,None),('media.html','2026-09-05',None,None),
