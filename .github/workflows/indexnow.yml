@@ -1,0 +1,55 @@
+name: IndexNow
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  notify-indexnow:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+      - name: Submit changed public URLs to IndexNow
+        env:
+          INDEXNOW_KEY: 19bdefda701db75b0c5cbe6ca10f6ad1
+          SITE_ORIGIN: https://azizullah-hafeez.github.io
+          BEFORE_SHA: ${{ github.event.before }}
+          AFTER_SHA: ${{ github.sha }}
+        run: |
+          python - <<'PY'
+          import json, os, subprocess, urllib.request, xml.etree.ElementTree as ET
+          before=os.environ['BEFORE_SHA'];after=os.environ['AFTER_SHA'];origin=os.environ['SITE_ORIGIN'].rstrip('/')
+          zero='0'*40
+          if before==zero:
+              changed=subprocess.check_output(['git','ls-files'],text=True).splitlines()
+          else:
+              changed=subprocess.check_output(['git','diff','--name-only',before,after],text=True).splitlines()
+          urls=[]
+          for path in changed:
+              if path.startswith('templates/'): continue
+              if not path.endswith('.html'): continue
+              if path.endswith('/index.html'):
+                  url=origin+'/'+path[:-10]
+              elif path=='index.html':
+                  url=origin+'/'
+              else:
+                  url=origin+'/'+path
+              urls.append(url)
+          if 'sitemap.xml' in changed:
+              root=ET.parse('sitemap.xml').getroot()
+              ns={'s':'http://www.sitemaps.org/schemas/sitemap/0.9'}
+              urls.extend(x.text for x in root.findall('s:url/s:loc',ns) if x.text)
+          urls=list(dict.fromkeys(urls))[:10000]
+          if not urls:
+              raise SystemExit(0)
+          key=os.environ['INDEXNOW_KEY']
+          payload=json.dumps({'host':'azizullah-hafeez.github.io','key':key,'keyLocation':origin+'/'+key+'.txt','urlList':urls}).encode()
+          req=urllib.request.Request('https://api.indexnow.org/indexnow',data=payload,headers={'Content-Type':'application/json; charset=utf-8'},method='POST')
+          with urllib.request.urlopen(req,timeout=30) as response:
+              print('IndexNow:',response.status,'URLs:',len(urls))
+          PY
