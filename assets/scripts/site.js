@@ -6,15 +6,18 @@
  ps:{menu:'غورنۍ',home:'کور',work:'د کار برخې',research:'څېړنه',blog:'بلاګ',courses:'کورسونه',activities:'فعالیتونه',media:'رسنۍ',works:'آثار',contact:'اړیکه',share:'مقاله شریکه کړئ',copy:'لینک کاپي کړئ',copied:'کاپي شو!',follow:'تعقیب کړئ'},
  ar:{menu:'القائمة',home:'الرئيسية',work:'مجالات العمل',research:'البحث',blog:'المدونة',courses:'الدورات',activities:'الأنشطة',media:'الإعلام',works:'المؤلفات',contact:'تواصل',share:'مشاركة المقال',copy:'نسخ الرابط',copied:'تم النسخ!',follow:'تابعني'}};
  const nav=document.getElementById('siteNav'),menu=nav.querySelector('.unified-menu'),links=nav.querySelector('.unified-links');
+ const supported=['en','fa','ps','ar'];
+ const pathParts=location.pathname.split('/').filter(Boolean);
+ const routeLang=supported.includes(pathParts[0])?pathParts[0]:null;
+ if(routeLang){try{localStorage.setItem('hafeez-language',routeLang)}catch(_){}}
  function close(){menu.setAttribute('aria-expanded','false');links.classList.remove('open')}
  menu.addEventListener('click',()=>{const open=menu.getAttribute('aria-expanded')!=='true';menu.setAttribute('aria-expanded',String(open));links.classList.toggle('open',open)});
  nav.addEventListener('keydown',e=>{if(e.key==='Escape'){close();menu.focus()}});
  links.addEventListener('click',e=>{if(e.target.closest('a'))close()});
- const height=()=>{if(!links.classList.contains('open'))document.documentElement.style.setProperty('--site-nav-height',nav.offsetHeight+'px')};
- const compact=()=>{nav.classList.toggle('nav-compact',scrollY>40);height()};
- window.addEventListener('scroll',compact,{passive:true});window.addEventListener('resize',height);new ResizeObserver(height).observe(nav);compact();
+ const compact=()=>nav.classList.toggle('nav-compact',scrollY>40);
+ window.addEventListener('scroll',compact,{passive:true});compact();
  const language=()=>labels[document.documentElement.lang]?document.documentElement.lang:'en';
- function shareUrl(){const u=new URL(location.href);u.hash='';u.searchParams.set('lang',language());return u.href}
+ function shareUrl(){const u=new URL(location.href);u.hash='';if(routeLang)u.searchParams.delete('lang');else u.searchParams.set('lang',language());return u.href}
  function refresh(){
  const lang=language(),t=labels[lang];
  document.querySelectorAll('[data-site-label]').forEach(e=>e.textContent=t[e.dataset.siteLabel]);
@@ -29,7 +32,26 @@
  document.querySelectorAll('[data-share-copy]').forEach(b=>b.addEventListener('click',async()=>{try{await navigator.clipboard.writeText(shareUrl());b.textContent=labels[language()].copied;setTimeout(refresh,1600)}catch{window.prompt(labels[language()].copy,shareUrl())}}));
  new MutationObserver(refresh).observe(document.documentElement,{attributes:true,attributeFilter:['lang']});
  nav.querySelectorAll('[data-lang]').forEach(b=>b.addEventListener('click',()=>{close();setTimeout(refresh,0)}));
- const requested=new URLSearchParams(location.search).get('lang');if(labels[requested])nav.querySelector('[data-lang="'+requested+'"]').click();
+ if(routeLang){
+  document.addEventListener('click',e=>{
+   const b=e.target.closest?.('[data-lang]');if(!b)return;
+   const next=b.dataset.lang;if(!supported.includes(next))return;
+   const page=pathParts.slice(1).join('/')||'index.html';
+   const dest='/'+next+'/'+(page==='index.html'?'':page)+location.hash;
+   try{localStorage.setItem('hafeez-language',next)}catch(_){}
+   e.preventDefault();e.stopImmediatePropagation();location.assign(dest);
+  },true);
+  document.addEventListener('click',e=>{
+   if(e.defaultPrevented||e.button!==0||e.metaKey||e.ctrlKey||e.shiftKey||e.altKey)return;
+   const a=e.target.closest?.('a[href]');if(!a||a.target==='_blank'||a.hasAttribute('download'))return;
+   const raw=a.getAttribute('href');if(!raw||raw.startsWith('#')||raw.startsWith('mailto:')||raw.startsWith('tel:')||raw.startsWith('javascript:'))return;
+   const u=new URL(raw,location.origin+'/');if(u.origin!==location.origin)return;
+   const parts=u.pathname.split('/').filter(Boolean);if(supported.includes(parts[0]))return;
+   const clean=u.pathname==='/'?'':u.pathname.replace(/^\//,'');
+   e.preventDefault();location.assign('/'+routeLang+'/'+clean+u.search+u.hash);
+  },true);
+ }
+ const requested=new URLSearchParams(location.search).get('lang');if(!routeLang&&labels[requested])nav.querySelector('[data-lang="'+requested+'"]').click();
  refresh();
 })();
 
