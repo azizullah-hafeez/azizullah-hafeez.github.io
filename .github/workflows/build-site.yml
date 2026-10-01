@@ -1,0 +1,30 @@
+name: Build static site
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build multilingual pages
+        run: python scripts/build.py
+      - name: Validate generated site
+        run: python scripts/check.py
+      - name: Commit generated files
+        run: |
+          if git diff --quiet; then
+            echo "Generated site is already current."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add .
+          git commit -m "Build multilingual SEO pages"
+          git push
