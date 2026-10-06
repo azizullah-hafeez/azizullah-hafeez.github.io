@@ -46,7 +46,7 @@ assert 'activity-herat-domestic-products-research.html' in (root/'sitemap.xml').
 conference_activity=(root/'activity-marghinani-conference-2026.html').read_text()
 conference_tags=Tags(conference_activity).tags
 assert {a['data-panel'] for _,a in conference_tags if 'data-panel' in a}=={'en','fa','ps','ar'}
-assert 'د امام برهان الدین مرغیناني رحمه الله په فقهي منهج کې د عرف مقام' in conference_activity
+assert 'د امام برهان‌الدین مرغیناني -رحمه الله- په فقهي منهج کې عرف او معاصر تطبیقات' in conference_activity
 assert 'activity-marghinani-conference-2026.html' in (root/'sitemap.xml').read_text()
 
 print('Validated',count,'pages.')
