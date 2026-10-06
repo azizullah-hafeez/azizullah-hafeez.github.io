@@ -42,4 +42,11 @@ assert {a['data-panel'] for _,a in research_tags if 'data-panel' in a}=={'en','f
 assert research_activity.count('https://forms.gle/fAHUjYHxm2pcVFji9')==4
 assert research_activity.count('target="_blank" rel="noopener noreferrer"')==4
 assert 'activity-herat-domestic-products-research.html' in (root/'sitemap.xml').read_text()
+
+conference_activity=(root/'activity-marghinani-conference-2026.html').read_text()
+conference_tags=Tags(conference_activity).tags
+assert {a['data-panel'] for _,a in conference_tags if 'data-panel' in a}=={'en','fa','ps','ar'}
+assert 'د امام برهان الدین مرغیناني رحمه الله په فقهي منهج کې د عرف مقام' in conference_activity
+assert 'activity-marghinani-conference-2026.html' in (root/'sitemap.xml').read_text()
+
 print('Validated',count,'pages.')

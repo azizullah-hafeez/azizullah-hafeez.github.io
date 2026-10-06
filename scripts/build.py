@@ -221,10 +221,10 @@ for source in sources:
 
 base_urls=[
  ('','2026-09-05','monthly','1.0'),('blog.html',None,'weekly','0.9'),
- ('activities.html','2026-09-05',None,None),('media.html','2026-09-05',None,None),
+ ('activities.html','2026-10-06',None,None),('media.html','2026-09-05',None,None),
  ('courses.html','2026-09-06','weekly','0.9'),
  ('event-ai-culture-webinar.html','2026-09-23','monthly','0.8'),
- ('activity-herat-domestic-products-research.html','2026-09-30','weekly','0.8')]
+ ('activity-herat-domestic-products-research.html','2026-09-30','weekly','0.8'),\n ('activity-marghinani-conference-2026.html','2026-10-06','monthly','0.9')]
 articles=[]
 for source in sources:
  if not source.name.startswith('article-'): continue
