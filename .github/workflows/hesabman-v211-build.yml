@@ -1,0 +1,62 @@
+name: Build HesabMan 2.1.1 APK
+on:
+  push:
+    branches:
+      - hesabman-v211-build
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+      - name: Reconstruct source without personal financial data
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/hesabman-v211-src
+          base64 -d .hesabman2-ci/archive.b64 > /tmp/base.tar.xz
+          echo "e65d65dc8ac0c3d5a7ddf2c7fdf7500468fa48e6708299f22f2328d268852603  /tmp/base.tar.xz" | sha256sum --check
+          tar -xJf /tmp/base.tar.xz -C /tmp/hesabman-v211-src
+          base64 -d .hesabman-v211-overlay.b64 > /tmp/patch.tar.xz
+          echo "0ac13def1f7bb2f2c08b8e2d6b9eab1884494023c2edc1298894921255c37f33  /tmp/patch.tar.xz" | sha256sum --check
+          tar -xJf /tmp/patch.tar.xz -C /tmp/hesabman-v211-src
+      - name: Java 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - name: Gradle 8.9
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.9'
+      - name: Android SDK
+        shell: bash
+        run: |
+          yes | /usr/local/lib/android/sdk/cmdline-tools/latest/bin/sdkmanager --licenses >/dev/null || true
+          /usr/local/lib/android/sdk/cmdline-tools/latest/bin/sdkmanager "platforms;android-35" "build-tools;35.0.0"
+      - name: Maintain proven Excel null handling
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          root=Path("/tmp/hesabman-v211-src/HesabMan/app/src/main/java/com/zeytun/hesabman")
+          p=root/"export/ExcelExporter.kt"
+          s=p.read_text().replace("Ledger.accountBalance(accs[g.accountId] ?: AccountEntity(),r.transactions,r.end)", "(accs[g.accountId]?.let { Ledger.accountBalance(it,r.transactions,r.end) } ?: 0L)")
+          p.write_text(s)
+          PY
+      - name: Build APK
+        working-directory: /tmp/hesabman-v211-src/HesabMan
+        shell: bash
+        run: |
+          gradle --no-daemon :app:assembleDebug --stacktrace
+          cp app/build/outputs/apk/debug/app-debug.apk /tmp/HesabMan-v2.1.1.apk
+          ls -lh /tmp/HesabMan-v2.1.1.apk
+      - uses: actions/upload-artifact@v4
+        with:
+          name: HesabMan-v2.1.1-APK
+          path: /tmp/HesabMan-v2.1.1.apk
+          retention-days: 1
+          if-no-files-found: error
