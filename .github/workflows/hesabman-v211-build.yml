@@ -47,6 +47,18 @@ jobs:
           s=p.read_text().replace("Ledger.accountBalance(accs[g.accountId] ?: AccountEntity(),r.transactions,r.end)", "(accs[g.accountId]?.let { Ledger.accountBalance(it,r.transactions,r.end) } ?: 0L)")
           p.write_text(s)
           PY
+      - name: Display correct version label
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          root=Path("/tmp/hesabman-v211-src/HesabMan/app/src/main/java/com/zeytun/hesabman")
+          for p in (root/"ui/AppUi.kt",root/"widget/FinanceWidget.kt"):
+              s=p.read_text()
+              s=s.replace("حساب من ۲.۱", "حساب من ۲.۱.۱")
+              s=s.replace("نسخهٔ ۲.۱ کنار نسخهٔ ۲ نصب می‌شود", "نسخهٔ ۲.۱.۱ کنار نسخهٔ ۲.۱ نصب می‌شود")
+              p.write_text(s)
+          PY
       - name: Build APK
         working-directory: /tmp/hesabman-v211-src/HesabMan
         shell: bash
