@@ -1,0 +1,47 @@
+name: Build HesabMan 2 APK
+
+on:
+  push:
+    branches:
+      - hesabman-apk-build
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  android-apk:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - name: Reconstruct isolated source archive
+        run: |
+          set -euo pipefail
+          base64 -d .hesabman2-ci/archive.b64 > /tmp/hesabman2.tar.xz
+          echo "e65d65dc8ac0c3d5a7ddf2c7fdf7500468fa48e6708299f22f2328d268852603  /tmp/hesabman2.tar.xz" | sha256sum --check
+          mkdir -p /tmp/hesabman2-src
+          tar -xf /tmp/hesabman2.tar.xz -C /tmp/hesabman2-src
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.9'
+      - name: Prepare Android SDK
+        run: |
+          yes | /usr/local/lib/android/sdk/cmdline-tools/latest/bin/sdkmanager --licenses >/dev/null || true
+          /usr/local/lib/android/sdk/cmdline-tools/latest/bin/sdkmanager "platforms;android-35" "build-tools;35.0.0"
+      - name: Compile debug APK
+        working-directory: /tmp/hesabman2-src/HesabMan
+        run: |
+          gradle --no-daemon :app:assembleDebug --stacktrace
+          cp app/build/outputs/apk/debug/app-debug.apk /tmp/HesabMan-v2.0.0.apk
+          ls -l /tmp/HesabMan-v2.0.0.apk
+      - uses: actions/upload-artifact@v4
+        with:
+          name: HesabMan-2-APK
+          path: /tmp/HesabMan-v2.0.0.apk
+          retention-days: 1
+          if-no-files-found: error
