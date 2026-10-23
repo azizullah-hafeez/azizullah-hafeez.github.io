@@ -33,6 +33,20 @@ jobs:
         run: |
           yes | /usr/local/lib/android/sdk/cmdline-tools/latest/bin/sdkmanager --licenses >/dev/null || true
           /usr/local/lib/android/sdk/cmdline-tools/latest/bin/sdkmanager "platforms;android-35" "build-tools;35.0.0"
+      - name: Correct Kotlin null handling
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          root=Path("/tmp/hesabman2-src/HesabMan/app/src/main/java/com/zeytun/hesabman")
+          p=root/"ui/AppUi.kt"
+          s=p.read_text()
+          s=s.replace("if(item?.openingAt==0L)System.currentTimeMillis() else item.openingAt", "if(item==null || item.openingAt==0L)System.currentTimeMillis() else item.openingAt")
+          p.write_text(s)
+          p=root/"export/ExcelExporter.kt"
+          s=p.read_text()
+          s=s.replace("Ledger.accountBalance(accs[g.accountId] ?: AccountEntity(),r.transactions,r.end)", "(accs[g.accountId]?.let { Ledger.accountBalance(it,r.transactions,r.end) } ?: 0L)")
+          p.write_text(s)
+          PY
       - name: Compile debug APK
         working-directory: /tmp/hesabman2-src/HesabMan
         run: |
