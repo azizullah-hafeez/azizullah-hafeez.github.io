@@ -52,6 +52,8 @@ problems_article=(root/'article-how-to-rise-beyond-problems.html').read_text()
 assert problems_article.count('class="rescue-step"')==24
 assert problems_article.count('data-article-media')==1
 assert problems_article.count('data-alt-fa=')==1 and problems_article.count('data-alt-en=')==1
+assert problems_article.count('https://www.facebook.com/reel/967230175671241')==5
+assert problems_article.count('class="source-note"')==4
 assert (root/'assets/images/rising-beyond-problems.webp').stat().st_size < 250_000
 assert 'article-how-to-rise-beyond-problems.html' in (root/'sitemap.xml').read_text()
 print('Validated',count,'pages.')
