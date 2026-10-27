@@ -1,6 +1,6 @@
 /* One language controller for all standalone articles. */
 function setMediaShape(media){const img=media&&media.querySelector('img');if(!img)return;const apply=()=>{const ratio=(img.naturalWidth||Number(img.getAttribute('width')))/(img.naturalHeight||Number(img.getAttribute('height')));media.dataset.shape=ratio>1.15?'landscape':ratio<.87?'portrait':'square'};(img.complete||img.getAttribute('width'))?apply():img.addEventListener('load',apply,{once:true})}
-function placeArticleMedia(l){const media=document.querySelector('[data-article-media]'),panel=document.querySelector('[data-panel="'+l+'"]'),intro=panel&&panel.querySelector('p');if(media&&intro){setMediaShape(media);intro.insertAdjacentElement('afterend',media);media.dataset.ready='true'}}
+function placeArticleMedia(l){const media=document.querySelector('[data-article-media]'),panel=document.querySelector('[data-panel="'+l+'"]'),intro=panel&&panel.querySelector('p'),img=media&&media.querySelector('img');if(media&&intro){setMediaShape(media);if(img&&img.dataset['alt'+l[0].toUpperCase()+l.slice(1)])img.alt=img.dataset['alt'+l[0].toUpperCase()+l.slice(1)];intro.insertAdjacentElement('afterend',media);media.dataset.ready='true'}}
 function setLang(l){
  if(!['en','fa','ps','ar'].includes(l))l='en';
  document.querySelectorAll('[data-panel]').forEach(x=>x.hidden=x.dataset.panel!==l);

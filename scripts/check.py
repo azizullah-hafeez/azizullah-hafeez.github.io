@@ -42,11 +42,16 @@ assert {a['data-panel'] for _,a in research_tags if 'data-panel' in a}=={'en','f
 assert research_activity.count('https://forms.gle/fAHUjYHxm2pcVFji9')==4
 assert research_activity.count('target="_blank" rel="noopener noreferrer"')==4
 assert 'activity-herat-domestic-products-research.html' in (root/'sitemap.xml').read_text()
-
 conference_activity=(root/'activity-marghinani-conference-2026.html').read_text()
 conference_tags=Tags(conference_activity).tags
 assert {a['data-panel'] for _,a in conference_tags if 'data-panel' in a}=={'en','fa','ps','ar'}
 assert 'د امام برهان‌الدین مرغیناني -رحمه الله- په فقهي منهج کې عرف او معاصر تطبیقات' in conference_activity
 assert 'activity-marghinani-conference-2026.html' in (root/'sitemap.xml').read_text()
 
+problems_article=(root/'article-how-to-rise-beyond-problems.html').read_text()
+assert problems_article.count('class="rescue-step"')==24
+assert problems_article.count('data-article-media')==1
+assert problems_article.count('data-alt-fa=')==1 and problems_article.count('data-alt-en=')==1
+assert (root/'assets/images/rising-beyond-problems.webp').stat().st_size < 250_000
+assert 'article-how-to-rise-beyond-problems.html' in (root/'sitemap.xml').read_text()
 print('Validated',count,'pages.')
