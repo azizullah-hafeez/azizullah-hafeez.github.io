@@ -56,4 +56,12 @@ assert problems_article.count('https://www.facebook.com/reel/967230175671241')==
 assert problems_article.count('class="source-note"')==4
 assert (root/'assets/images/rising-beyond-problems.webp').stat().st_size < 250_000
 assert 'article-how-to-rise-beyond-problems.html' in (root/'sitemap.xml').read_text()
+
+advice_article=(root/'article-etiquette-of-advice-in-islam.html').read_text()
+assert advice_article.count('class="advice-step"')==24
+assert advice_article.count('class="verse-card"')==4
+assert advice_article.count('class="hazm-quote"')==4
+assert advice_article.count('https://dorar.net/files/alakhlaq.pdf')==5
+assert advice_article.count('target="_blank" rel="noopener noreferrer"')==8
+assert 'article-etiquette-of-advice-in-islam.html' in (root/'sitemap.xml').read_text()
 print('Validated',count,'pages.')
