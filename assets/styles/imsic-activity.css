@@ -1,0 +1,11 @@
+.imsic-panel .paper-box{background:linear-gradient(135deg,#fff 0%,#fbf7ed 100%)}
+.framework-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.9rem;margin:1.4rem 0 2.3rem;counter-reset:principle}
+.framework-step{position:relative;min-height:8rem;padding:1.2rem 1.2rem 1.2rem 4.3rem;background:#fff;border:1px solid var(--line);counter-increment:principle}
+.framework-step::before{content:counter(principle,decimal-leading-zero);position:absolute;top:1rem;left:1rem;color:var(--gold);font-size:1.55rem;font-weight:900;line-height:1}
+.framework-step h3{margin:0 0 .45rem;font-size:1rem;color:var(--ink)}
+.framework-step p{margin:0;font-size:.9rem;line-height:1.75;color:#526571}
+[dir=rtl] .framework-step{padding:1.2rem 4.3rem 1.2rem 1.2rem}
+[dir=rtl] .framework-step::before{left:auto;right:1rem}
+.conference-theme{margin:2rem 0;padding:1.1rem 1.25rem;border-inline-start:4px solid var(--gold);background:#f5f1e7;color:#42545e}
+.conference-theme strong{color:var(--ink)}
+@media(max-width:650px){.framework-grid{grid-template-columns:1fr}.framework-step{min-height:0}}

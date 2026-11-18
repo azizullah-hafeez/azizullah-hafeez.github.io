@@ -225,7 +225,8 @@ base_urls=[
  ('courses.html','2026-09-06','weekly','0.9'),
  ('event-ai-culture-webinar.html','2026-09-23','monthly','0.8'),
  ('activity-herat-domestic-products-research.html','2026-09-30','weekly','0.8'),
- ('activity-marghinani-conference-2026.html','2026-10-06','monthly','0.9')]
+ ('activity-marghinani-conference-2026.html','2026-10-06','monthly','0.9'),
+ ('activity-imsic-2026-comparative-religion.html','2026-11-12','monthly','0.9')]
 articles=[]
 for source in sources:
  if not source.name.startswith('article-'): continue

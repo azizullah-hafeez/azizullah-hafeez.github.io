@@ -47,6 +47,11 @@ conference_tags=Tags(conference_activity).tags
 assert {a['data-panel'] for _,a in conference_tags if 'data-panel' in a}=={'en','fa','ps','ar'}
 assert 'د امام برهان‌الدین مرغیناني -رحمه الله- په فقهي منهج کې عرف او معاصر تطبیقات' in conference_activity
 assert 'activity-marghinani-conference-2026.html' in (root/'sitemap.xml').read_text()
+imsic_activity=(root/'activity-imsic-2026-comparative-religion.html').read_text()
+imsic_tags=Tags(imsic_activity).tags
+assert {a['data-panel'] for _,a in imsic_tags if 'data-panel' in a}=={'en','fa','ps','ar'}
+assert imsic_activity.count('class="framework-step"')==16
+assert 'activity-imsic-2026-comparative-religion.html' in (root/'sitemap.xml').read_text()
 
 problems_article=(root/'article-how-to-rise-beyond-problems.html').read_text()
 assert problems_article.count('class="rescue-step"')==24
